@@ -2,346 +2,504 @@
 <html lang="bg">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#090b10">
-<title>GoldJournal PRO</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#080a0f">
+<title>GoldJournal PRO 2.0</title>
 <style>
 *{
-box-sizing:border-box;
+    box-sizing:border-box;
 }
 body{
-margin:0;
-background:#080a0f;
-color:#f5f7fb;
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    margin:0;
+    background:
+        radial-gradient(circle at 20% 0%,rgba(240,185,11,.08),transparent 30%),
+        radial-gradient(circle at 100% 20%,rgba(70,220,150,.05),transparent 30%),
+        #080a0f;
+    color:#f5f7fb;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
 .wrap{
-max-width:1050px;
-margin:auto;
-padding:18px;
+    max-width:1150px;
+    margin:auto;
+    padding:20px;
 }
+/* HEADER */
 header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:15px;
-margin-bottom:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:22px;
+}
+.brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
 }
 .logo{
-font-size:27px;
-font-weight:900;
+    width:48px;
+    height:48px;
+    border-radius:15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:25px;
+    background:linear-gradient(135deg,#f0b90b,#ffdc5b);
+    box-shadow:0 8px 30px rgba(240,185,11,.18);
+}
+.title{
+    font-size:25px;
+    font-weight:900;
 }
 .subtitle{
-color:#858d9d;
-font-size:13px;
-margin-top:3px;
+    color:#7f8796;
+    font-size:12px;
+    margin-top:3px;
 }
 button{
-border:0;
-border-radius:12px;
-padding:11px 15px;
-font-weight:700;
-cursor:pointer;
-background:#202631;
-color:white;
+    border:0;
+    border-radius:12px;
+    padding:11px 15px;
+    background:#1a202b;
+    color:#fff;
+    font-weight:800;
+    cursor:pointer;
+    transition:.2s;
+}
+button:hover{
+    transform:translateY(-1px);
+    filter:brightness(1.15);
 }
 .primary{
-background:#f0b90b;
-color:#111;
+    background:linear-gradient(135deg,#f0b90b,#e2a900);
+    color:#111;
+    box-shadow:0 7px 22px rgba(240,185,11,.16);
 }
 .danger{
-background:#3b2027;
-color:#ff9daa;
+    background:#351c23;
+    color:#ff8291;
 }
-.grid{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:10px;
+/* STATS */
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
 }
-.card{
-background:#11151d;
-border:1px solid #222936;
-border-radius:17px;
-padding:16px;
+.stat{
+    position:relative;
+    overflow:hidden;
+    background:rgba(17,21,29,.9);
+    border:1px solid #222936;
+    border-radius:19px;
+    padding:17px;
 }
-.label{
-font-size:12px;
-color:#858d9d;
+.stat:after{
+    content:"";
+    position:absolute;
+    width:70px;
+    height:70px;
+    right:-25px;
+    bottom:-30px;
+    border-radius:50%;
+    background:#f0b90b;
+    opacity:.04;
 }
-.value{
-font-size:24px;
-font-weight:900;
-margin-top:5px;
+.stat-label{
+    color:#7f8796;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.5px;
+}
+.stat-value{
+    font-size:26px;
+    font-weight:900;
+    margin-top:7px;
 }
 .green{
-color:#42dc96;
+    color:#48dc98;
 }
 .red{
-color:#ff6575;
+    color:#ff6677;
 }
 .yellow{
-color:#f0b90b;
+    color:#f0b90b;
 }
+.gray{
+    color:#858d9d;
+}
+/* TABS */
 .tabs{
-display:flex;
-gap:8px;
-margin:18px 0;
+    display:flex;
+    gap:8px;
+    margin:18px 0;
 }
 .tab.active{
-background:#f0b90b;
-color:#111;
+    background:#f0b90b;
+    color:#111;
 }
+/* PANEL */
 .panel{
-background:#11151d;
-border:1px solid #222936;
-border-radius:17px;
-padding:17px;
-margin-bottom:15px;
+    background:rgba(15,19,27,.92);
+    border:1px solid #222936;
+    border-radius:20px;
+    padding:19px;
+    margin-bottom:15px;
+    box-shadow:0 10px 35px rgba(0,0,0,.12);
 }
-.panel-title{
-font-size:19px;
-font-weight:800;
-margin-bottom:14px;
+.section-title{
+    font-size:19px;
+    font-weight:900;
 }
+.section-sub{
+    color:#7f8796;
+    font-size:12px;
+    margin-top:3px;
+}
+/* MONTH SUMMARY */
+.month-summary{
+    display:grid;
+    grid-template-columns:1.4fr 1fr 1fr 1fr;
+    gap:10px;
+    margin-top:15px;
+}
+.month-box{
+    background:#0a0d13;
+    border:1px solid #202631;
+    border-radius:15px;
+    padding:13px;
+}
+.month-box .small{
+    color:#737b8b;
+    font-size:10px;
+}
+.month-box .big{
+    font-size:20px;
+    font-weight:900;
+    margin-top:5px;
+}
+/* CALENDAR */
+.calendar-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.month-controls{
+    display:flex;
+    align-items:center;
+    gap:9px;
+}
+.month-title{
+    min-width:150px;
+    text-align:center;
+    font-size:20px;
+    font-weight:900;
+    text-transform:capitalize;
+}
+.calendar{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:9px;
+    margin-top:16px;
+}
+.weekday{
+    text-align:center;
+    color:#697181;
+    font-size:11px;
+    font-weight:800;
+    padding-bottom:3px;
+}
+.day{
+    min-height:105px;
+    background:#0b0e14;
+    border:1px solid #202631;
+    border-radius:15px;
+    padding:11px;
+    position:relative;
+    overflow:hidden;
+}
+.day-number{
+    font-size:13px;
+    font-weight:900;
+}
+.day-info{
+    position:absolute;
+    left:11px;
+    bottom:11px;
+}
+.day-pnl{
+    font-size:15px;
+    font-weight:900;
+}
+.day-trades{
+    color:#788091;
+    font-size:10px;
+    margin-top:3px;
+}
+.day.win{
+    background:
+        linear-gradient(145deg,
+        rgba(45,220,145,.23),
+        rgba(20,80,60,.10));
+    border-color:#287958;
+    box-shadow:
+        inset 0 0 25px rgba(55,220,145,.07),
+        0 0 15px rgba(55,220,145,.07);
+}
+.day.loss{
+    background:
+        linear-gradient(145deg,
+        rgba(255,65,85,.23),
+        rgba(90,20,30,.10));
+    border-color:#81323f;
+    box-shadow:
+        inset 0 0 25px rgba(255,65,85,.07),
+        0 0 15px rgba(255,65,85,.06);
+}
+.day.today{
+    outline:2px solid #f0b90b;
+    outline-offset:1px;
+}
+.day.empty{
+    opacity:.12;
+}
+/* COACH */
+.coach{
+    background:
+        radial-gradient(circle at 100% 0%,rgba(240,185,11,.10),transparent 32%),
+        #11151d;
+    border-color:#37321d;
+}
+.coach-top{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:16px;
+}
+.robot{
+    width:48px;
+    height:48px;
+    border-radius:15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:25px;
+    background:linear-gradient(135deg,#f0b90b,#ffd75b);
+    color:#111;
+}
+.coach-name{
+    font-size:19px;
+    font-weight:900;
+}
+.coach-description{
+    color:#7f8796;
+    font-size:11px;
+}
+.coach-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin-top:15px;
+}
+.coach-card{
+    background:#0a0d13;
+    border:1px solid #242b36;
+    border-radius:14px;
+    padding:12px;
+}
+.coach-card-title{
+    color:#747c8c;
+    font-size:10px;
+    text-transform:uppercase;
+}
+.coach-card-value{
+    margin-top:5px;
+    font-size:18px;
+    font-weight:900;
+}
+.coach-advice{
+    margin-top:13px;
+    padding:14px;
+    background:#0a0d13;
+    border:1px solid #262d39;
+    border-radius:14px;
+    line-height:1.55;
+    font-size:13px;
+}
+.advice-line{
+    padding:8px 0;
+    border-bottom:1px solid #1f2530;
+}
+.advice-line:last-child{
+    border-bottom:0;
+}
+/* FORM */
 form{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:11px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:11px;
 }
 .field label{
-display:block;
-font-size:12px;
-color:#929aaa;
-margin-bottom:5px;
+    display:block;
+    color:#8c94a4;
+    font-size:11px;
+    margin-bottom:5px;
 }
 input,
 select,
 textarea{
-width:100%;
-background:#090c12;
-border:1px solid #2a3140;
-color:white;
-border-radius:10px;
-padding:11px;
-font-size:14px;
-outline:none;
+    width:100%;
+    background:#090c12;
+    border:1px solid #29303d;
+    color:#fff;
+    border-radius:11px;
+    padding:11px;
+    outline:none;
+}
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:#f0b90b;
 }
 textarea{
-min-height:90px;
-resize:vertical;
+    min-height:90px;
+    resize:vertical;
 }
 .full{
-grid-column:1/-1;
+    grid-column:1/-1;
 }
 .actions{
-display:flex;
-justify-content:flex-end;
-gap:8px;
+    display:flex;
+    justify-content:flex-end;
+    gap:8px;
 }
+/* TRADES */
 .trade{
-display:grid;
-grid-template-columns:1.2fr .7fr .7fr .7fr .9fr auto;
-gap:10px;
-align-items:center;
-padding:13px 0;
-border-bottom:1px solid #242a35;
-font-size:13px;
+    display:grid;
+    grid-template-columns:1.2fr .7fr .7fr .7fr .9fr auto;
+    gap:10px;
+    align-items:center;
+    padding:14px 0;
+    border-bottom:1px solid #222936;
+    font-size:13px;
 }
 .trade:last-child{
-border-bottom:0;
-}
-.pill{
-display:inline-block;
-padding:4px 7px;
-border-radius:20px;
-font-size:10px;
-background:#252b37;
-}
-.buy{
-color:#43dc96;
-}
-.sell{
-color:#ff7180;
+    border-bottom:0;
 }
 .small{
-font-size:10px;
-color:#777f8e;
+    color:#737b8b;
+    font-size:10px;
 }
-.empty{
-text-align:center;
-padding:35px;
-color:#777f8e;
+.pill{
+    display:inline-block;
+    padding:4px 7px;
+    border-radius:20px;
+    background:#202631;
+    font-size:9px;
+    margin-left:4px;
 }
-/* DAILY CALENDAR */
-.calendar{
-display:grid;
-grid-template-columns:repeat(7,1fr);
-gap:7px;
+.buy{
+    color:#48dc98;
 }
-.weekday{
-text-align:center;
-font-size:11px;
-color:#727a89;
-padding-bottom:4px;
+.sell{
+    color:#ff7180;
 }
-.day{
-min-height:72px;
-border-radius:12px;
-padding:8px;
-background:#0b0e14;
-border:1px solid #202631;
-position:relative;
+.empty-message{
+    text-align:center;
+    color:#747c8c;
+    padding:35px;
 }
-.day-number{
-font-size:12px;
-font-weight:800;
-}
-.day-pnl{
-font-size:12px;
-font-weight:800;
-margin-top:15px;
-}
-.day.win{
-border-color:#1e694d;
-background:rgba(35,160,105,.13);
-box-shadow:0 0 12px rgba(50,220,145,.12);
-}
-.day.loss{
-border-color:#73303b;
-background:rgba(220,65,85,.13);
-box-shadow:0 0 12px rgba(255,70,90,.10);
-}
-.day.today{
-outline:2px solid #f0b90b;
-}
-.month-controls{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:12px;
-}
-.month-title{
-font-weight:900;
-font-size:18px;
-}
-/* COACH */
-.coach{
-border:1px solid #403916;
-background:linear-gradient(
-135deg,
-#14130d,
-#11151d
-);
-}
-.coach-header{
-display:flex;
-align-items:center;
-gap:10px;
-margin-bottom:14px;
-}
-.robot{
-width:42px;
-height:42px;
-border-radius:13px;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:23px;
-background:#f0b90b;
-color:#111;
-}
-.coach-title{
-font-weight:900;
-font-size:18px;
-}
-.coach-sub{
-font-size:11px;
-color:#858d9d;
-}
-.coach-message{
-line-height:1.55;
-font-size:14px;
-}
-.advice{
-margin-top:12px;
-padding:11px;
-border-radius:11px;
-background:#0a0d13;
-border:1px solid #262d39;
-font-size:13px;
-}
-.stat-row{
-display:flex;
-justify-content:space-between;
-padding:7px 0;
-border-bottom:1px solid #222936;
-font-size:13px;
-}
-.stat-row:last-child{
-border-bottom:0;
-}
-@media(max-width:700px){
-.wrap{
-padding:13px;
-}
-.grid{
-grid-template-columns:repeat(2,1fr);
-}
-form{
-grid-template-columns:1fr 1fr;
-}
-.trade{
-grid-template-columns:1fr 1fr;
-}
-.calendar{
-gap:4px;
-}
-.day{
-min-height:60px;
-padding:6px;
-}
-.day-pnl{
-font-size:10px;
-margin-top:10px;
-}
-header{
-align-items:flex-start;
-}
-.logo{
-font-size:23px;
-}
+/* MOBILE */
+@media(max-width:750px){
+    .wrap{
+        padding:13px;
+    }
+    header{
+        align-items:flex-start;
+    }
+    .title{
+        font-size:21px;
+    }
+    .logo{
+        width:42px;
+        height:42px;
+    }
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+    .stat-value{
+        font-size:21px;
+    }
+    .month-summary{
+        grid-template-columns:1fr 1fr;
+    }
+    .calendar{
+        gap:5px;
+    }
+    .day{
+        min-height:80px;
+        padding:7px;
+        border-radius:11px;
+    }
+    .day-info{
+        left:7px;
+        bottom:7px;
+    }
+    .day-pnl{
+        font-size:11px;
+    }
+    .day-trades{
+        font-size:8px;
+    }
+    .calendar .weekday{
+        font-size:9px;
+    }
+    .coach-grid{
+        grid-template-columns:1fr 1fr;
+    }
+    form{
+        grid-template-columns:1fr 1fr;
+    }
+    .trade{
+        grid-template-columns:1fr 1fr;
+    }
 }
 @media(max-width:420px){
-.grid{
-gap:7px;
-}
-.card{
-padding:12px;
-}
-.value{
-font-size:20px;
-}
-.calendar{
-grid-template-columns:repeat(7,1fr);
-}
-.day{
-min-height:53px;
-}
-.day-pnl{
-font-size:9px;
-}
+    .stats{
+        gap:7px;
+    }
+    .stat{
+        padding:12px;
+    }
+    .month-title{
+        min-width:125px;
+        font-size:16px;
+    }
+    .day{
+        min-height:68px;
+    }
+    .day-pnl{
+        font-size:9px;
+    }
+    .coach-grid{
+        grid-template-columns:1fr 1fr;
+    }
 }
 </style>
 </head>
 <body>
 <div class="wrap">
+<!-- HEADER -->
 <header>
-<div>
+<div class="brand">
 <div class="logo">
-🥇 GoldJournal PRO
+🥇
+</div>
+<div>
+<div class="title">
+GoldJournal PRO
 </div>
 <div class="subtitle">
-XAUUSD • Trading Journal • Risk Management
+XAUUSD • Trading Performance System
+</div>
 </div>
 </div>
 <button
@@ -350,45 +508,45 @@ onclick="showNew()">
 ＋ Нова сделка
 </button>
 </header>
-<!-- MAIN STATISTICS -->
-<div class="grid">
-<div class="card">
-<div class="label">
+<!-- MAIN STATS -->
+<div class="stats">
+<div class="stat">
+<div class="stat-label">
 Общ P&L
 </div>
 <div
 id="totalPnl"
-class="value">
+class="stat-value">
 $0.00
 </div>
 </div>
-<div class="card">
-<div class="label">
+<div class="stat">
+<div class="stat-label">
 Днес
 </div>
 <div
 id="todayPnl"
-class="value">
+class="stat-value">
 $0.00
 </div>
 </div>
-<div class="card">
-<div class="label">
+<div class="stat">
+<div class="stat-label">
 Win Rate
 </div>
 <div
 id="winRate"
-class="value">
+class="stat-value">
 0%
 </div>
 </div>
-<div class="card">
-<div class="label">
+<div class="stat">
+<div class="stat-label">
 Profit Factor
 </div>
 <div
 id="profitFactor"
-class="value">
+class="stat-value">
 0.00
 </div>
 </div>
@@ -408,32 +566,17 @@ onclick="showNew()">
 New Trade
 </button>
 </div>
-<!-- AI COACH -->
-<section class="panel coach">
-<div class="coach-header">
-<div class="robot">
-🤖
-</div>
-<div>
-<div class="coach-title">
-AI Coach
-</div>
-<div class="coach-sub">
-Твоят trading discipline assistant
-</div>
-</div>
-</div>
-<div
-id="coachMessage"
-class="coach-message">
-Добави сделки, за да анализирам представянето ти.
-</div>
-<div
-id="coachStats">
-</div>
-</section>
-<!-- DAILY PERFORMANCE -->
+<!-- CALENDAR -->
 <section class="panel">
+<div class="calendar-header">
+<div>
+<div class="section-title">
+📅 Trading Calendar
+</div>
+<div class="section-sub">
+Всеки ден показва реалния ти резултат
+</div>
+</div>
 <div class="month-controls">
 <button onclick="changeMonth(-1)">
 ‹
@@ -446,18 +589,107 @@ class="month-title">
 ›
 </button>
 </div>
-<div class="calendar">
-<div class="weekday">П</div>
-<div class="weekday">В</div>
-<div class="weekday">С</div>
-<div class="weekday">Ч</div>
-<div class="weekday">П</div>
-<div class="weekday">С</div>
-<div class="weekday">Н</div>
+</div>
+<!-- MONTH SUMMARY -->
+<div class="month-summary">
+<div class="month-box">
+<div class="small">
+МЕСЕЧЕН P&L
+</div>
+<div
+id="monthPnl"
+class="big">
+$0.00
+</div>
+</div>
+<div class="month-box">
+<div class="small">
+ПЕЧЕЛИВШИ ДНИ
+</div>
+<div
+id="winningDays"
+class="big green">
+0
+</div>
+</div>
+<div class="month-box">
+<div class="small">
+ГУБЕЩИ ДНИ
+</div>
+<div
+id="losingDays"
+class="big red">
+0
+</div>
+</div>
+<div class="month-box">
+<div class="small">
+НАЙ-ДОБЪР ДЕН
+</div>
+<div
+id="bestDay"
+class="big green">
+—
+</div>
+</div>
+</div>
+<!-- CALENDAR -->
+<div
+class="calendar"
+style="margin-top:18px">
+<div class="weekday">
+П
+</div>
+<div class="weekday">
+В
+</div>
+<div class="weekday">
+С
+</div>
+<div class="weekday">
+Ч
+</div>
+<div class="weekday">
+П
+</div>
+<div class="weekday">
+С
+</div>
+<div class="weekday">
+Н
+</div>
 </div>
 <div
 id="calendar"
 class="calendar">
+</div>
+</section>
+<!-- AI COACH -->
+<section class="panel coach">
+<div class="coach-top">
+<div class="robot">
+🤖
+</div>
+<div>
+<div class="coach-name">
+AI Coach
+</div>
+<div class="coach-description">
+Анализ на твоя риск, резултати и trading discipline
+</div>
+</div>
+</div>
+<div
+id="coachMain">
+Добави сделки, за да започна анализа.
+</div>
+<div
+id="coachGrid"
+class="coach-grid">
+</div>
+<div
+id="coachAdvice"
+class="coach-advice">
 </div>
 </section>
 <!-- NEW TRADE -->
@@ -465,9 +697,13 @@ class="calendar">
 id="newPanel"
 class="panel"
 style="display:none">
-<div class="panel-title">
+<div class="section-title">
 📈 Нова сделка
 </div>
+<div class="section-sub">
+Въведи сделката точно както е изпълнена в MT5.
+</div>
+<br>
 <form id="tradeForm">
 <div class="field">
 <label>
@@ -568,7 +804,7 @@ required>
 </label>
 <textarea
 id="notes"
-placeholder="4H посока → 1H потвърждение → 15M entry...">
+placeholder="4H посока → 1H confirmation → 15M entry → BOS/FVG/OB...">
 </textarea>
 </div>
 <div class="actions full">
@@ -588,14 +824,18 @@ class="primary">
 <section
 id="dashboardPanel"
 class="panel">
-<div
-style="
+<div style="
 display:flex;
 justify-content:space-between;
 align-items:center;
-margin-bottom:10px">
-<div class="panel-title">
-📋 Сделки
+margin-bottom:8px">
+<div>
+<div class="section-title">
+📋 Trade History
+</div>
+<div class="section-sub">
+Всички изпълнени сделки
+</div>
 </div>
 <button
 class="danger"
@@ -607,22 +847,35 @@ onclick="clearAll()">
 </section>
 </div>
 <script>
-/* =========================
+/* ================================
    STORAGE
-========================= */
+================================ */
 const STORAGE_KEY =
-"goldjournal_pro_v1";
+"goldjournal_pro_v2";
 let trades =
 JSON.parse(
 localStorage.getItem(STORAGE_KEY) || "[]"
 );
+/* import old version */
+if(!trades.length){
+const old =
+localStorage.getItem(
+"goldjournal_pro_v1"
+);
+if(old){
+try{
+trades =
+JSON.parse(old);
+}catch(e){}
+}
+}
 let calendarDate =
 new Date();
 const $ =
 id => document.getElementById(id);
-/* =========================
-   STORAGE SAVE
-========================= */
+/* ================================
+   SAVE
+================================ */
 function save(){
 localStorage.setItem(
 STORAGE_KEY,
@@ -630,14 +883,12 @@ JSON.stringify(trades)
 );
 render();
 }
-/* =========================
+/* ================================
    NAVIGATION
-========================= */
+================================ */
 function showNew(){
-$("newPanel").style.display =
-"block";
-$("dashboardPanel").style.display =
-"none";
+$("newPanel").style.display="block";
+$("dashboardPanel").style.display="none";
 $("newTab").classList.add("active");
 $("dashboardTab")
 .classList.remove("active");
@@ -650,130 +901,66 @@ new Date().getTimezoneOffset()*60000
 .slice(0,16);
 }
 function showDashboard(){
-$("newPanel").style.display =
-"none";
-$("dashboardPanel").style.display =
-"block";
+$("newPanel").style.display="none";
+$("dashboardPanel").style.display="block";
 $("dashboardTab")
 .classList.add("active");
 $("newTab")
 .classList.remove("active");
 render();
 }
-/* =========================
-   NEW TRADE
-========================= */
-$("tradeForm")
-.addEventListener(
-"submit",
-function(e){
-e.preventDefault();
-const trade = {
-id:Date.now(),
-symbol:
-$("symbol").value
-.trim()
-.toUpperCase(),
-side:
-$("side").value,
-status:
-$("status").value,
-entry:
-Number($("entry").value),
-exit:
-$("exit").value === ""
-?
-null
-:
-Number($("exit").value),
-lot:
-Number($("lot").value),
-sl:
-$("sl").value === ""
-?
-null
-:
-Number($("sl").value),
-tp:
-$("tp").value === ""
-?
-null
-:
-Number($("tp").value),
-risk:
-$("risk").value === ""
-?
-null
-:
-Number($("risk").value),
-date:
-$("date").value,
-notes:
-$("notes").value
-};
-trades.unshift(trade);
-save();
-e.target.reset();
-$("symbol").value =
-"XAUUSD";
-$("lot").value =
-"0.02";
-showDashboard();
-});
-/* =========================
+/* ================================
    P&L
-========================= */
+================================ */
 function getPnl(t){
 if(
 t.status !== "Closed" ||
 t.exit === null
 )
 return 0;
-const difference =
+const diff =
 t.side === "BUY"
 ?
 t.exit - t.entry
 :
 t.entry - t.exit;
 /*
- XAUUSD standard
- contract size = 100
+XAUUSD:
+100 oz contract
 */
-return difference *
+return diff *
 t.lot *
 100;
 }
-/* =========================
+/* ================================
    DATE
-========================= */
-function localDateString(date){
-return date.toISOString()
-.split("T")[0];
-}
-function tradeDate(t){
+================================ */
+function dateOnly(t){
 return t.date.split("T")[0];
 }
-/* =========================
+function todayString(){
+return new Date()
+.toISOString()
+.split("T")[0];
+}
+/* ================================
    TODAY
-========================= */
+================================ */
 function todayPnl(){
-const today =
-localDateString(new Date());
 return trades
 .filter(
 t =>
-tradeDate(t) === today &&
-t.status === "Closed"
+t.status==="Closed" &&
+dateOnly(t)===todayString()
 )
 .reduce(
-(sum,t) =>
-sum + getPnl(t),
+(sum,t)=>sum+getPnl(t),
 0
 );
 }
-/* =========================
+/* ================================
    CALENDAR
-========================= */
+================================ */
 function changeMonth(amount){
 calendarDate.setMonth(
 calendarDate.getMonth()+amount
@@ -793,38 +980,43 @@ month:"long",
 year:"numeric"
 }
 ).format(calendarDate);
-const container =
-$("calendar");
-container.innerHTML = "";
 const first =
 new Date(year,month,1);
-let startDay =
+let start =
 first.getDay();
-startDay =
-startDay === 0
+start =
+start===0
 ?
 6
 :
-startDay-1;
+start-1;
 const days =
 new Date(
 year,
 month+1,
 0
 ).getDate();
-/* EMPTY DAYS */
+const container =
+$("calendar");
+container.innerHTML="";
+/* blank */
 for(
 let i=0;
-i<startDay;
+i<start;
 i++
 ){
-const empty =
+const blank =
 document.createElement("div");
-empty.className="day";
-empty.style.opacity=".15";
-container.appendChild(empty);
+blank.className=
+"day empty";
+container.appendChild(blank);
 }
-/* DAYS */
+/* days */
+let monthPnl=0;
+let winning=0;
+let losing=0;
+let best=-Infinity;
+let bestDate="—";
 for(
 let day=1;
 day<=days;
@@ -836,221 +1028,445 @@ year,
 month,
 day
 );
-const dateString =
-localDateString(d);
-const dailyTrades =
+const date =
+d.toISOString()
+.split("T")[0];
+const dayTrades =
 trades.filter(
 t =>
-tradeDate(t) === dateString &&
-t.status === "Closed"
+t.status==="Closed" &&
+dateOnly(t)===date
 );
 const pnl =
-dailyTrades.reduce(
-(sum,t) =>
-sum+getPnl(t),
+dayTrades.reduce(
+(sum,t)=>sum+getPnl(t),
 0
 );
+monthPnl+=pnl;
+if(pnl>0){
+winning++;
+if(pnl>best){
+best=pnl;
+bestDate=day;
+}
+}
+if(pnl<0){
+losing++;
+}
 const el =
 document.createElement("div");
-el.className =
-"day";
+el.className="day";
 if(pnl>0)
 el.classList.add("win");
 if(pnl<0)
 el.classList.add("loss");
-if(
-dateString ===
-localDateString(new Date())
-)
+if(date===todayString())
 el.classList.add("today");
-el.innerHTML = `
+el.innerHTML=`
 <div class="day-number">
 ${day}
 </div>
+<div class="day-info">
 <div class="day-pnl">
 ${
-dailyTrades.length
+dayTrades.length
 ?
-(
-pnl>=0
-?
-"+$"
-:
-"-$"
-)+Math.abs(pnl).toFixed(2)
+(pnl>=0?"+$":"-$")+
+Math.abs(pnl).toFixed(2)
 :
 "—"
 }
 </div>
+<div class="day-trades">
+${
+dayTrades.length
+?
+dayTrades.length+
+(dayTrades.length===1
+?
+" сделка"
+:
+" сделки")
+:
+"Няма сделки"
+}
+</div>
+</div>
 `;
 container.appendChild(el);
 }
+$("monthPnl").textContent =
+(monthPnl>=0?"+$":"-$")+
+Math.abs(monthPnl).toFixed(2);
+$("monthPnl").className =
+"big "+
+(
+monthPnl>0
+?
+"green"
+:
+monthPnl<0
+?
+"red"
+:
+"gray"
+);
+$("winningDays").textContent=
+winning;
+$("losingDays").textContent=
+losing;
+$("bestDay").textContent=
+best===-Infinity
+?
+"—"
+:
+"+$"+best.toFixed(2);
 }
-/* =========================
+/* ================================
    AI COACH
-========================= */
+================================ */
 function coach(){
 const closed =
 trades.filter(
-t => t.status === "Closed"
+t=>t.status==="Closed"
 );
-const message =
-$("coachMessage");
-const stats =
-$("coachStats");
 if(!closed.length){
-message.innerHTML =
-"👋 <b>Добре дошъл.</b><br><br>"+
-"Добави първата си сделка и ще започна да следя твоята дисциплина, риск и резултати.";
-stats.innerHTML="";
+$("coachMain").innerHTML=
+`
+<div class="coach-advice">
+👋 <b>AI Coach е готов.</b>
+<br><br>
+Добави първата си затворена сделка и ще следя:
+<b>риск • P&L • Win Rate • Profit Factor • overtrading • дисциплина • последователност</b>
+</div>
+`;
+$("coachGrid").innerHTML="";
+$("coachAdvice").innerHTML="";
 return;
 }
-const totalPnl =
-closed.reduce(
-(sum,t)=>sum+getPnl(t),
+const pnls =
+closed.map(getPnl);
+const total =
+pnls.reduce(
+(a,b)=>a+b,
 0
 );
 const wins =
-closed.filter(
-t=>getPnl(t)>0
-).length;
+pnls.filter(x=>x>0);
 const losses =
-closed.filter(
-t=>getPnl(t)<0
-).length;
+pnls.filter(x=>x<0);
 const winRate =
-wins/closed.length*100;
-const totalRisk =
-closed
-.filter(t=>t.risk)
-.reduce(
-(sum,t)=>sum+t.risk,
-0
+wins.length/
+closed.length*
+100;
+const avgWin =
+wins.length
+?
+wins.reduce((a,b)=>a+b,0)/
+wins.length
+:
+0;
+const avgLoss =
+losses.length
+?
+Math.abs(
+losses.reduce((a,b)=>a+b,0)
+)/
+losses.length
+:
+0;
+const grossWin =
+wins.reduce((a,b)=>a+b,0);
+const grossLoss =
+Math.abs(
+losses.reduce((a,b)=>a+b,0)
 );
+const pf =
+grossLoss
+?
+grossWin/grossLoss
+:
+0;
+const risks =
+closed
+.filter(t=>t.risk!==null)
+.map(t=>Number(t.risk));
 const avgRisk =
-totalRisk /
-Math.max(
-1,
-closed.filter(t=>t.risk).length
+risks.length
+?
+risks.reduce((a,b)=>a+b,0)/
+risks.length
+:
+0;
+const avgR =
+avgRisk
+?
+total/
+avgRisk/
+closed.length
+:
+0;
+/* daily trades */
+const todayTrades =
+closed.filter(
+t=>dateOnly(t)===todayString()
 );
 const today =
 todayPnl();
-const todayTrades =
-closed.filter(
-t =>
-tradeDate(t) ===
-localDateString(new Date())
-);
-let advice=[];
-/* DISCIPLINE */
-if(todayTrades.length >= 2){
-advice.push(
-"⚠️ Имаш 2+ сделки днес. Внимавай с overtrading."
-);
-}
-/* RISK */
-if(avgRisk > 25){
-advice.push(
-"⚠️ Средният ти риск е над $25. Намали размера на позицията или увеличи дисциплината около SL."
-);
-}
-else if(avgRisk > 0){
-advice.push(
-"✅ Средният ти риск е в контролирана зона."
-);
-}
-/* WIN RATE */
-if(winRate >= 60){
-advice.push(
-"📈 Win rate е над 60%. Продължи да следваш същия процес."
-);
-}
-else if(
-closed.length >= 5 &&
-winRate < 40
+/* consecutive losses */
+let consecutiveLosses=0;
+for(
+let i=closed.length-1;
+i>=0;
+i--
 ){
-advice.push(
-"⚠️ Win rate е под 40%. Прегледай последните сделки и търси повтаряща се грешка."
-);
+if(
+getPnl(closed[i])<0
+){
+consecutiveLosses++;
+}else{
+break;
 }
-/* DAILY */
-if(today > 0){
-advice.push(
-"🟢 Днес си на плюс. Ако планът ти е достигнат, няма нужда да търсиш още сделки."
-);
 }
-else if(today < 0){
-advice.push(
-"🔴 Днес си на минус. Не търси revenge trade."
-);
+/* consecutive wins */
+let consecutiveWins=0;
+for(
+let i=closed.length-1;
+i>=0;
+i--
+){
+if(
+getPnl(closed[i])>0
+){
+consecutiveWins++;
+}else{
+break;
 }
-else{
-advice.push(
-"⚪ Днес нямаш реализиран P&L."
-);
 }
-/* MESSAGE */
+/* MAIN */
 let headline;
-if(totalPnl > 0){
-headline =
-"📈 Като цяло си на плюс. Фокусът ти трябва да остане върху повторяемия процес, а не върху една отделна сделка.";
+if(today>0){
+headline=
+"🟢 <b>Днес си на плюс.</b> "+
+"Ако вече си изпълнил дневната си цел, най-ценната сделка може да бъде да не правиш повече сделки.";
 }
-else if(totalPnl < 0){
-headline =
-"📉 В момента си на минус. Не се опитвай да го връщаш с по-голям риск. Анализирай процеса.";
+else if(today<0){
+headline=
+"🔴 <b>Днес си на минус.</b> "+
+"Не увеличавай риска, за да връщаш загубата. Следвай предварително определения си план.";
 }
 else{
-headline =
-"⚪ Все още няма достатъчно резултати за сериозна оценка.";
+headline=
+"⚪ <b>Днес няма реализиран резултат.</b> "+
+"Липсата на сделка е по-добра от лоша сделка без setup.";
 }
-message.innerHTML =
-headline;
-stats.innerHTML = `
-<div class="advice">
-${advice
-.map(x=>`<div style="margin-bottom:7px">${x}</div>`)
-.join("")}
+$("coachMain").innerHTML=
+`
+<div class="coach-advice">
+${headline}
 </div>
-<div style="margin-top:12px">
-<div class="stat-row">
-<span>Общо сделки</span>
-<b>${closed.length}</b>
+`;
+/* COACH GRID */
+$("coachGrid").innerHTML=`
+<div class="coach-card">
+<div class="coach-card-title">
+Средна печалба
 </div>
-<div class="stat-row">
-<span>Печеливши</span>
-<b class="green">${wins}</b>
+<div class="coach-card-value green">
++$${avgWin.toFixed(2)}
 </div>
-<div class="stat-row">
-<span>Губещи</span>
-<b class="red">${losses}</b>
 </div>
-<div class="stat-row">
-<span>Среден риск</span>
-<b>$${avgRisk.toFixed(2)}</b>
+<div class="coach-card">
+<div class="coach-card-title">
+Средна загуба
+</div>
+<div class="coach-card-value red">
+-$${avgLoss.toFixed(2)}
+</div>
+</div>
+<div class="coach-card">
+<div class="coach-card-title">
+Среден риск
+</div>
+<div class="coach-card-value">
+$${avgRisk.toFixed(2)}
+</div>
+</div>
+<div class="coach-card">
+<div class="coach-card-title">
+Последни печеливши
+</div>
+<div class="coach-card-value green">
+${consecutiveWins}
+</div>
+</div>
+<div class="coach-card">
+<div class="coach-card-title">
+Последни губещи
+</div>
+<div class="coach-card-value red">
+${consecutiveLosses}
+</div>
+</div>
+<div class="coach-card">
+<div class="coach-card-title">
+Среден R
+</div>
+<div class="coach-card-value">
+${avgR.toFixed(2)}R
 </div>
 </div>
 `;
+/* ADVICE */
+let advice=[];
+/* risk */
+if(avgRisk>25){
+advice.push(
+"🔴 <b>Risk Alert:</b> Средният ти риск е над $25. Това е сигнал да намалиш позицията или да бъдеш по-стриктен със SL."
+);
 }
-/* =========================
-   TRADES
-========================= */
+else if(avgRisk>0){
+advice.push(
+"🟢 <b>Risk:</b> Средният риск е около $"+
+avgRisk.toFixed(2)+". Следиш риска преди сделката — това е правилният подход."
+);
+}
+/* overtrading */
+if(todayTrades.length>=3){
+advice.push(
+"🔴 <b>Overtrading Alert:</b> Имаш "+
+todayTrades.length+
+" сделки днес. Провери дали всяка е имала реален setup."
+);
+}
+else if(todayTrades.length===2){
+advice.push(
+"🟡 <b>Discipline:</b> Вече имаш 2 сделки днес. Преди трета сделка трябва да има изключително ясен setup."
+);
+}
+else if(todayTrades.length===1){
+advice.push(
+"🟢 <b>Discipline:</b> Само една сделка днес. Това помага да избегнеш overtrading."
+);
+}
+/* win rate */
+if(
+closed.length>=5 &&
+winRate>=60
+){
+advice.push(
+"📈 <b>Win Rate:</b> "+
+winRate.toFixed(1)+
+"%. Имаш положителен резултат по този показател."
+);
+}
+else if(
+closed.length>=5 &&
+winRate<40
+){
+advice.push(
+"🟡 <b>Win Rate:</b> "+
+winRate.toFixed(1)+
+"%. Прегледай последните сделки и потърси повтаряща се грешка."
+);
+}
+/* PF */
+if(pf>1){
+advice.push(
+"🟢 <b>Profit Factor:</b> "+
+pf.toFixed(2)+
+". Общата печалба е по-голяма от общата загуба."
+);
+}
+else if(
+closed.length>=5
+){
+advice.push(
+"🔴 <b>Profit Factor:</b> "+
+pf.toFixed(2)+
+". Засега губещите сделки тежат повече от печелившите."
+);
+}
+/* losing streak */
+if(consecutiveLosses>=3){
+advice.push(
+"🔴 <b>Loss Streak:</b> "+
+consecutiveLosses+
+" поредни загуби. Това е момент за пауза, а не за увеличаване на риска."
+);
+}
+/* winning streak */
+if(consecutiveWins>=3){
+advice.push(
+"🟡 <b>Winning Streak:</b> "+
+consecutiveWins+
+" поредни печеливши сделки. Не увеличавай риска само защото последните сделки са били успешни."
+);
+}
+/* R:R */
+if(avgWin>0 && avgLoss>0){
+const rr=
+avgWin/avgLoss;
+if(rr>=2){
+advice.push(
+"🟢 <b>Reward/Risk:</b> Средната печалба е "+
+rr.toFixed(2)+
+" пъти средната загуба."
+);
+}
+else{
+advice.push(
+"🟡 <b>Reward/Risk:</b> Средната печалба е "+
+rr.toFixed(2)+
+" пъти средната загуба. Следи дали твоите setups дават достатъчно място за печалба."
+);
+}
+}
+/* total */
+if(total>0){
+advice.push(
+"💰 <b>Общ резултат:</b> +$"+
+total.toFixed(2)+
+". Основната задача е да запазиш процеса и контрола на риска."
+);
+}
+else if(total<0){
+advice.push(
+"📉 <b>Общ резултат:</b> -$"+
+Math.abs(total).toFixed(2)+
+". Не преследвай загубата с по-големи позиции."
+);
+}
+$("coachAdvice").innerHTML=
+advice
+.map(
+x=>`
+<div class="advice-line">
+${x}
+</div>
+`
+)
+.join("");
+}
+/* ================================
+   TRADE HISTORY
+================================ */
 function renderTrades(){
 const container =
 $("trades");
 if(!trades.length){
-container.innerHTML =
+container.innerHTML=
 `
-<div class="empty">
-Няма сделки.
-<br><br>
-Натисни
-<b>＋ Нова сделка</b>.
+<div class="empty-message">
+Няма сделки.<br><br>
+Добави първата си сделка.
 </div>
 `;
 return;
 }
-container.innerHTML =
-trades.map(t=>{
+container.innerHTML=
+trades
+.map(t=>{
 const pnl =
 getPnl(t);
 return `
@@ -1127,11 +1543,12 @@ onclick="deleteTrade(${t.id})">
 </div>
 </div>
 `;
-}).join("");
+})
+.join("");
 }
-/* =========================
+/* ================================
    EDIT
-========================= */
+================================ */
 function editTrade(id){
 const t =
 trades.find(
@@ -1154,17 +1571,17 @@ t.risk ?? "";
 $("date").value=t.date;
 $("notes").value=
 t.notes || "";
-trades =
+trades=
 trades.filter(
 x=>x.id!==id
 );
 showNew();
 }
-/* =========================
+/* ================================
    DELETE
-========================= */
+================================ */
 function deleteTrade(id){
-trades =
+trades=
 trades.filter(
 t=>t.id!==id
 );
@@ -1180,9 +1597,9 @@ trades=[];
 save();
 }
 }
-/* =========================
-   MAIN RENDER
-========================= */
+/* ================================
+   RENDER
+================================ */
 function render(){
 const closed =
 trades.filter(
@@ -1215,23 +1632,27 @@ closed
 0
 )
 );
-$("totalPnl").textContent =
+$("totalPnl").textContent=
 (total>=0?"+$":"-$")+
 Math.abs(total).toFixed(2);
-$("totalPnl").className =
-"value "+
+$("totalPnl").className=
+"stat-value "+
 (
-total>=0
+total>0
 ?
 "green"
 :
+total<0
+?
 "red"
+:
+"gray"
 );
-$("todayPnl").textContent =
+$("todayPnl").textContent=
 (today>=0?"+$":"-$")+
 Math.abs(today).toFixed(2);
-$("todayPnl").className =
-"value "+
+$("todayPnl").className=
+"stat-value "+
 (
 today>0
 ?
@@ -1241,9 +1662,9 @@ today<0
 ?
 "red"
 :
-"yellow"
+"gray"
 );
-$("winRate").textContent =
+$("winRate").textContent=
 (
 closed.length
 ?
@@ -1252,7 +1673,7 @@ wins/closed.length*100
 0
 )
 .toFixed(1)+"%";
-$("profitFactor").textContent =
+$("profitFactor").textContent=
 (
 grossLoss
 ?
@@ -1261,8 +1682,8 @@ grossWin/grossLoss
 0
 )
 .toFixed(2);
-renderTrades();
 renderCalendar();
+renderTrades();
 coach();
 }
 render();
