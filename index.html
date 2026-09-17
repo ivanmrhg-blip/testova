@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090b10">
+<title>GoldJournal — XAUUSD Trading Journal</title>
+<style>
+*{box-sizing:border-box}
+body{
+    margin:0;
+    background:#090b10;
+    color:#f4f6fb;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+.wrap{
+    max-width:980px;
+    margin:auto;
+    padding:18px;
+}
+.top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    margin-bottom:18px;
+}
+h1{
+    font-size:25px;
+    margin:0;
+}
+.sub{
+    color:#8d95a5;
+    font-size:13px;
+    margin-top:4px;
+}
+button,
+input,
+select,
+textarea{
+    font:inherit;
+}
+button{
+    border:0;
+    border-radius:12px;
+    padding:12px 15px;
+    background:#202532;
+    color:#fff;
+    font-weight:700;
+    cursor:pointer;
+}
+.primary{
+    background:#f0b90b;
+    color:#111;
+}
+.danger{
+    background:#3a1e24;
+    color:#ffb8c0;
+}
+.grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+}
+.card{
+    background:#11151e;
+    border:1px solid #202634;
+    border-radius:16px;
+    padding:15px;
+}
+.label{
+    color:#8d95a5;
+    font-size:12px;
+}
+.value{
+    font-size:23px;
+    font-weight:800;
+    margin-top:5px;
+}
+.green{
+    color:#48d597;
+}
+.red{
+    color:#ff6878;
+}
+.tabs{
+    display:flex;
+    gap:8px;
+    margin:15px 0;
+}
+.tab.active{
+    background:#f0b90b;
+    color:#111;
+}
+.panel{
+    background:#11151e;
+    border:1px solid #202634;
+    border-radius:16px;
+    padding:16px;
+    margin-bottom:14px;
+}
+form{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:11px;
+}
+.field label{
+    display:block;
+    color:#9aa2b2;
+    font-size:12px;
+    margin-bottom:5px;
+}
+input,
+select,
+textarea{
+    width:100%;
+    background:#0b0e14;
+    color:#fff;
+    border:1px solid #2a3140;
+    border-radius:10px;
+    padding:11px;
+    outline:none;
+}
+textarea{
+    min-height:80px;
+    resize:vertical;
+}
+.full{
+    grid-column:1/-1;
+}
+.actions{
+    display:flex;
+    gap:8px;
+    justify-content:flex-end;
+}
+.trade{
+    display:grid;
+    grid-template-columns:1.1fr .7fr .8fr .8fr .8fr auto;
+    gap:10px;
+    align-items:center;
+    padding:12px 0;
+    border-bottom:1px solid #222936;
+    font-size:13px;
+}
+.trade:last-child{
+    border-bottom:0;
+}
+.pill{
+    padding:5px 8px;
+    border-radius:999px;
+    background:#202532;
+    display:inline-block;
+    font-size:11px;
+}
+.buy{
+    color:#4edca0;
+}
+.sell{
+    color:#ff8090;
+}
+.small{
+    font-size:11px;
+    color:#7f8796;
+}
+.empty{
+    text-align:center;
+    color:#7f8796;
+    padding:35px 10px;
+}
+@media(max-width:700px){
+    .grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+    form{
+        grid-template-columns:1fr 1fr;
+    }
+    .full{
+        grid-column:1/-1;
+    }
+    .trade{
+        grid-template-columns:1fr 1fr;
+    }
+    .top{
+        align-items:flex-start;
+    }
+    .top button{
+        padding:10px;
+    }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top">
+<div>
+<h1>🥇 GoldJournal</h1>
+<div class="sub">
+Твоят XAUUSD Trading Journal
+</div>
+</div>
+<button class="primary" onclick="showNew()">
+＋ Нова сделка
+</button>
+</div>
+<!-- STATISTICS -->
+<div class="grid">
+<div class="card">
+<div class="label">Общ P&L</div>
+<div id="pnl" class="value">$0.00</div>
+</div>
+<div class="card">
+<div class="label">Win Rate</div>
+<div id="winrate" class="value">0%</div>
+</div>
+<div class="card">
+<div class="label">Сделки</div>
+<div id="count" class="value">0</div>
+</div>
+<div class="card">
+<div class="label">Profit Factor</div>
+<div id="pf" class="value">0.00</div>
+</div>
+</div>
+<!-- TABS -->
+<div class="tabs">
+<button id="dashTab"
+class="tab active"
+onclick="showDash()">
+Dashboard
+</button>
+<button id="newTab"
+class="tab"
+onclick="showNew()">
+New Trade
+</button>
+</div>
+<!-- NEW TRADE -->
+<section id="newPanel"
+class="panel"
+style="display:none">
+<h2 style="margin-top:0">
+Нова сделка
+</h2>
+<form id="tradeForm">
+<div class="field">
+<label>Symbol</label>
+<input
+id="symbol"
+value="XAUUSD"
+required>
+</div>
+<div class="field">
+<label>Посока</label>
+<select id="side">
+<option>BUY</option>
+<option>SELL</option>
+</select>
+</div>
+<div class="field">
+<label>Status</label>
+<select id="status">
+<option>Closed</option>
+<option>Open</option>
+</select>
+</div>
+<div class="field">
+<label>Entry</label>
+<input
+id="entry"
+type="number"
+step="0.01"
+required>
+</div>
+<div class="field">
+<label>Exit</label>
+<input
+id="exit"
+type="number"
+step="0.01">
+</div>
+<div class="field">
+<label>Lot</label>
+<input
+id="lot"
+type="number"
+step="0.01"
+value="0.02"
+required>
+</div>
+<div class="field">
+<label>Stop Loss</label>
+<input
+id="sl"
+type="number"
+step="0.01">
+</div>
+<div class="field">
+<label>Take Profit</label>
+<input
+id="tp"
+type="number"
+step="0.01">
+</div>
+<div class="field">
+<label>Risk $</label>
+<input
+id="risk"
+type="number"
+step="0.01">
+</div>
+<div class="field">
+<label>Дата</label>
+<input
+id="date"
+type="datetime-local"
+required>
+</div>
+<div class="field full">
+<label>Бележки</label>
+<textarea
+id="notes"
+placeholder="Защо влезе? Какво видя на 4H / 1H / 15M?">
+</textarea>
+</div>
+<div class="actions full">
+<button
+type="button"
+onclick="showDash()">
+Отказ
+</button>
+<button
+class="primary">
+Запази сделката
+</button>
+</div>
+</form>
+</section>
+<!-- DASHBOARD -->
+<section
+id="dashPanel"
+class="panel">
+<div
+style="
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:8px">
+<h2 style="margin:0">
+Сделки
+</h2>
+<button
+onclick="clearAll()"
+class="danger">
+Изчисти всички
+</button>
+</div>
+<div id="trades"></div>
+</section>
+</div>
+<script>
+const KEY="goldjournal_trades_v1";
+let trades=
+JSON.parse(
+localStorage.getItem(KEY)||"[]"
+);
+const $=id=>
+document.getElementById(id);
+/* SHOW NEW */
+function showNew(){
+$("newPanel").style.display="block";
+$("dashPanel").style.display="none";
+$("newTab").classList.add("active");
+$("dashTab").classList.remove("active");
+$("date").value=
+new Date(
+Date.now()-
+new Date().getTimezoneOffset()*60000
+)
+.toISOString()
+.slice(0,16);
+}
+/* SHOW DASHBOARD */
+function showDash(){
+$("newPanel").style.display="none";
+$("dashPanel").style.display="block";
+$("dashTab").classList.add("active");
+$("newTab").classList.remove("active");
+render();
+}
+/* SAVE */
+function save(){
+localStorage.setItem(
+KEY,
+JSON.stringify(trades)
+);
+render();
+}
+/* ADD TRADE */
+$("tradeForm").addEventListener(
+"submit",
+function(e){
+e.preventDefault();
+const t={
+id:Date.now(),
+symbol:
+$("symbol").value
+.trim()
+.toUpperCase(),
+side:
+$("side").value,
+status:
+$("status").value,
+entry:
++$("entry").value,
+exit:
+$("exit").value===""
+?null
+:+$("exit").value,
+lot:
++$("lot").value,
+sl:
+$("sl").value===""
+?null
+:+$("sl").value,
+tp:
+$("tp").value===""
+?null
+:+$("tp").value,
+risk:
+$("risk").value===""
+?null
+:+$("risk").value,
+date:
+$("date").value,
+notes:
+$("notes").value
+};
+trades.unshift(t);
+save();
+e.target.reset();
+$("symbol").value="XAUUSD";
+$("lot").value="0.02";
+showDash();
+});
+/* P&L */
+function pnl(t){
+if(
+t.status!=="Closed" ||
+t.exit===null
+)
+return 0;
+const diff=
+t.side==="BUY"
+?
+t.exit-t.entry
+:
+t.entry-t.exit;
+return diff*t.lot*100;
+}
+/* R MULTIPLE */
+function rmult(t){
+if(
+!t.risk ||
+pnl(t)===0
+)
+return null;
+return pnl(t)/t.risk;
+}
+/* DELETE */
+function del(id){
+trades=
+trades.filter(
+t=>t.id!==id
+);
+save();
+}
+/* EDIT */
+function edit(id){
+const t=
+trades.find(
+x=>x.id===id
+);
+if(!t)return;
+$("symbol").value=t.symbol;
+$("side").value=t.side;
+$("status").value=t.status;
+$("entry").value=t.entry;
+$("exit").value=
+t.exit??"";
+$("lot").value=t.lot;
+$("sl").value=
+t.sl??"";
+$("tp").value=
+t.tp??"";
+$("risk").value=
+t.risk??"";
+$("date").value=t.date;
+$("notes").value=
+t.notes||"";
+trades=
+trades.filter(
+x=>x.id!==id
+);
+showNew();
+}
+/* CLEAR */
+function clearAll(){
+if(
+confirm(
+"Да изтрия ли всички сделки?"
+)
+){
+trades=[];
+save();
+}
+}
+/* RENDER */
+function render(){
+const closed=
+trades.filter(
+t=>t.status==="Closed"
+);
+const total=
+closed.reduce(
+(a,t)=>a+pnl(t),
+0
+);
+const wins=
+closed.filter(
+t=>pnl(t)>0
+).length;
+const grossWin=
+closed
+.filter(t=>pnl(t)>0)
+.reduce(
+(a,t)=>a+pnl(t),
+0
+);
+const grossLoss=
+Math.abs(
+closed
+.filter(t=>pnl(t)<0)
+.reduce(
+(a,t)=>a+pnl(t),
+0
+)
+);
+$("pnl").textContent=
+(total>=0?"+$":"-$")+
+Math.abs(total).toFixed(2);
+$("pnl").className=
+"value "+
+(total>=0?"green":"red");
+$("winrate").textContent=
+(
+closed.length
+?
+wins/closed.length*100
+:
+0
+)
+.toFixed(1)+"%";
+$("count").textContent=
+trades.length;
+$("pf").textContent=
+(
+grossLoss
+?
+grossWin/grossLoss
+:
+0
+)
+.toFixed(2);
+if(!trades.length){
+$("trades").innerHTML=
+`
+<div class="empty">
+Още няма сделки.
+<br>
+Натисни
+„＋ Нова сделка“.
+</div>
+`;
+return;
+}
+$("trades").innerHTML=
+trades.map(t=>{
+const p=pnl(t);
+const r=rmult(t);
+const open=
+t.status==="Open";
+return `
+<div class="trade">
+<div>
+<b>${t.symbol}</b>
+<br>
+<span class="${
+t.side==="BUY"
+?"buy"
+:"sell"
+}">
+${t.side}
+</span>
+<span class="pill">
+${t.status}
+</span>
+</div>
+<div>
+<span class="small">
+Entry
+</span>
+<br>
+${t.entry}
+</div>
+<div>
+<span class="small">
+Exit
+</span>
+<br>
+${t.exit??"—"}
+</div>
+<div>
+<span class="small">
+Lot
+</span>
+<br>
+${t.lot}
+</div>
+<div>
+<span class="small">
+P&L / R
+</span>
+<br>
+<b class="${
+p>=0
+?"green"
+:"red"
+}">
+${
+open
+?
+"—"
+:
+(p>=0?"+$":"-$")+
+Math.abs(p).toFixed(2)
+}
+</b>
+${
+r!==null
+?
+" / "+r.toFixed(2)+"R"
+:
+""
+}
+</div>
+<div>
+<button
+onclick="edit(${t.id})">
+Edit
+</button>
+<button
+class="danger"
+onclick="del(${t.id})">
+×
+</button>
+</div>
+</div>
+`;
+}).join("");
+}
+render();
+</script>
+</body>
+</html>
