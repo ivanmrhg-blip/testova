@@ -4,267 +4,502 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#090b10">
-<title>GoldJournal — XAUUSD Trading Journal</title>
+<title>GoldJournal PRO</title>
 <style>
-*{box-sizing:border-box}
+*{
+box-sizing:border-box;
+}
 body{
-    margin:0;
-    background:#090b10;
-    color:#f4f6fb;
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+margin:0;
+background:#080a0f;
+color:#f5f7fb;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
 .wrap{
-    max-width:980px;
-    margin:auto;
-    padding:18px;
+max-width:1050px;
+margin:auto;
+padding:18px;
 }
-.top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:12px;
-    margin-bottom:18px;
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:15px;
+margin-bottom:20px;
 }
-h1{
-    font-size:25px;
-    margin:0;
+.logo{
+font-size:27px;
+font-weight:900;
 }
-.sub{
-    color:#8d95a5;
-    font-size:13px;
-    margin-top:4px;
-}
-button,
-input,
-select,
-textarea{
-    font:inherit;
+.subtitle{
+color:#858d9d;
+font-size:13px;
+margin-top:3px;
 }
 button{
-    border:0;
-    border-radius:12px;
-    padding:12px 15px;
-    background:#202532;
-    color:#fff;
-    font-weight:700;
-    cursor:pointer;
+border:0;
+border-radius:12px;
+padding:11px 15px;
+font-weight:700;
+cursor:pointer;
+background:#202631;
+color:white;
 }
 .primary{
-    background:#f0b90b;
-    color:#111;
+background:#f0b90b;
+color:#111;
 }
 .danger{
-    background:#3a1e24;
-    color:#ffb8c0;
+background:#3b2027;
+color:#ff9daa;
 }
 .grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:10px;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:10px;
 }
 .card{
-    background:#11151e;
-    border:1px solid #202634;
-    border-radius:16px;
-    padding:15px;
+background:#11151d;
+border:1px solid #222936;
+border-radius:17px;
+padding:16px;
 }
 .label{
-    color:#8d95a5;
-    font-size:12px;
+font-size:12px;
+color:#858d9d;
 }
 .value{
-    font-size:23px;
-    font-weight:800;
-    margin-top:5px;
+font-size:24px;
+font-weight:900;
+margin-top:5px;
 }
 .green{
-    color:#48d597;
+color:#42dc96;
 }
 .red{
-    color:#ff6878;
+color:#ff6575;
+}
+.yellow{
+color:#f0b90b;
 }
 .tabs{
-    display:flex;
-    gap:8px;
-    margin:15px 0;
+display:flex;
+gap:8px;
+margin:18px 0;
 }
 .tab.active{
-    background:#f0b90b;
-    color:#111;
+background:#f0b90b;
+color:#111;
 }
 .panel{
-    background:#11151e;
-    border:1px solid #202634;
-    border-radius:16px;
-    padding:16px;
-    margin-bottom:14px;
+background:#11151d;
+border:1px solid #222936;
+border-radius:17px;
+padding:17px;
+margin-bottom:15px;
+}
+.panel-title{
+font-size:19px;
+font-weight:800;
+margin-bottom:14px;
 }
 form{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:11px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:11px;
 }
 .field label{
-    display:block;
-    color:#9aa2b2;
-    font-size:12px;
-    margin-bottom:5px;
+display:block;
+font-size:12px;
+color:#929aaa;
+margin-bottom:5px;
 }
 input,
 select,
 textarea{
-    width:100%;
-    background:#0b0e14;
-    color:#fff;
-    border:1px solid #2a3140;
-    border-radius:10px;
-    padding:11px;
-    outline:none;
+width:100%;
+background:#090c12;
+border:1px solid #2a3140;
+color:white;
+border-radius:10px;
+padding:11px;
+font-size:14px;
+outline:none;
 }
 textarea{
-    min-height:80px;
-    resize:vertical;
+min-height:90px;
+resize:vertical;
 }
 .full{
-    grid-column:1/-1;
+grid-column:1/-1;
 }
 .actions{
-    display:flex;
-    gap:8px;
-    justify-content:flex-end;
+display:flex;
+justify-content:flex-end;
+gap:8px;
 }
 .trade{
-    display:grid;
-    grid-template-columns:1.1fr .7fr .8fr .8fr .8fr auto;
-    gap:10px;
-    align-items:center;
-    padding:12px 0;
-    border-bottom:1px solid #222936;
-    font-size:13px;
+display:grid;
+grid-template-columns:1.2fr .7fr .7fr .7fr .9fr auto;
+gap:10px;
+align-items:center;
+padding:13px 0;
+border-bottom:1px solid #242a35;
+font-size:13px;
 }
 .trade:last-child{
-    border-bottom:0;
+border-bottom:0;
 }
 .pill{
-    padding:5px 8px;
-    border-radius:999px;
-    background:#202532;
-    display:inline-block;
-    font-size:11px;
+display:inline-block;
+padding:4px 7px;
+border-radius:20px;
+font-size:10px;
+background:#252b37;
 }
 .buy{
-    color:#4edca0;
+color:#43dc96;
 }
 .sell{
-    color:#ff8090;
+color:#ff7180;
 }
 .small{
-    font-size:11px;
-    color:#7f8796;
+font-size:10px;
+color:#777f8e;
 }
 .empty{
-    text-align:center;
-    color:#7f8796;
-    padding:35px 10px;
+text-align:center;
+padding:35px;
+color:#777f8e;
+}
+/* DAILY CALENDAR */
+.calendar{
+display:grid;
+grid-template-columns:repeat(7,1fr);
+gap:7px;
+}
+.weekday{
+text-align:center;
+font-size:11px;
+color:#727a89;
+padding-bottom:4px;
+}
+.day{
+min-height:72px;
+border-radius:12px;
+padding:8px;
+background:#0b0e14;
+border:1px solid #202631;
+position:relative;
+}
+.day-number{
+font-size:12px;
+font-weight:800;
+}
+.day-pnl{
+font-size:12px;
+font-weight:800;
+margin-top:15px;
+}
+.day.win{
+border-color:#1e694d;
+background:rgba(35,160,105,.13);
+box-shadow:0 0 12px rgba(50,220,145,.12);
+}
+.day.loss{
+border-color:#73303b;
+background:rgba(220,65,85,.13);
+box-shadow:0 0 12px rgba(255,70,90,.10);
+}
+.day.today{
+outline:2px solid #f0b90b;
+}
+.month-controls{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:12px;
+}
+.month-title{
+font-weight:900;
+font-size:18px;
+}
+/* COACH */
+.coach{
+border:1px solid #403916;
+background:linear-gradient(
+135deg,
+#14130d,
+#11151d
+);
+}
+.coach-header{
+display:flex;
+align-items:center;
+gap:10px;
+margin-bottom:14px;
+}
+.robot{
+width:42px;
+height:42px;
+border-radius:13px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:23px;
+background:#f0b90b;
+color:#111;
+}
+.coach-title{
+font-weight:900;
+font-size:18px;
+}
+.coach-sub{
+font-size:11px;
+color:#858d9d;
+}
+.coach-message{
+line-height:1.55;
+font-size:14px;
+}
+.advice{
+margin-top:12px;
+padding:11px;
+border-radius:11px;
+background:#0a0d13;
+border:1px solid #262d39;
+font-size:13px;
+}
+.stat-row{
+display:flex;
+justify-content:space-between;
+padding:7px 0;
+border-bottom:1px solid #222936;
+font-size:13px;
+}
+.stat-row:last-child{
+border-bottom:0;
 }
 @media(max-width:700px){
-    .grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-    form{
-        grid-template-columns:1fr 1fr;
-    }
-    .full{
-        grid-column:1/-1;
-    }
-    .trade{
-        grid-template-columns:1fr 1fr;
-    }
-    .top{
-        align-items:flex-start;
-    }
-    .top button{
-        padding:10px;
-    }
+.wrap{
+padding:13px;
+}
+.grid{
+grid-template-columns:repeat(2,1fr);
+}
+form{
+grid-template-columns:1fr 1fr;
+}
+.trade{
+grid-template-columns:1fr 1fr;
+}
+.calendar{
+gap:4px;
+}
+.day{
+min-height:60px;
+padding:6px;
+}
+.day-pnl{
+font-size:10px;
+margin-top:10px;
+}
+header{
+align-items:flex-start;
+}
+.logo{
+font-size:23px;
+}
+}
+@media(max-width:420px){
+.grid{
+gap:7px;
+}
+.card{
+padding:12px;
+}
+.value{
+font-size:20px;
+}
+.calendar{
+grid-template-columns:repeat(7,1fr);
+}
+.day{
+min-height:53px;
+}
+.day-pnl{
+font-size:9px;
+}
 }
 </style>
 </head>
 <body>
 <div class="wrap">
-<div class="top">
+<header>
 <div>
-<h1>🥇 GoldJournal</h1>
-<div class="sub">
-Твоят XAUUSD Trading Journal
+<div class="logo">
+🥇 GoldJournal PRO
+</div>
+<div class="subtitle">
+XAUUSD • Trading Journal • Risk Management
 </div>
 </div>
-<button class="primary" onclick="showNew()">
+<button
+class="primary"
+onclick="showNew()">
 ＋ Нова сделка
 </button>
-</div>
-<!-- STATISTICS -->
+</header>
+<!-- MAIN STATISTICS -->
 <div class="grid">
 <div class="card">
-<div class="label">Общ P&L</div>
-<div id="pnl" class="value">$0.00</div>
+<div class="label">
+Общ P&L
+</div>
+<div
+id="totalPnl"
+class="value">
+$0.00
+</div>
 </div>
 <div class="card">
-<div class="label">Win Rate</div>
-<div id="winrate" class="value">0%</div>
+<div class="label">
+Днес
+</div>
+<div
+id="todayPnl"
+class="value">
+$0.00
+</div>
 </div>
 <div class="card">
-<div class="label">Сделки</div>
-<div id="count" class="value">0</div>
+<div class="label">
+Win Rate
+</div>
+<div
+id="winRate"
+class="value">
+0%
+</div>
 </div>
 <div class="card">
-<div class="label">Profit Factor</div>
-<div id="pf" class="value">0.00</div>
+<div class="label">
+Profit Factor
+</div>
+<div
+id="profitFactor"
+class="value">
+0.00
+</div>
 </div>
 </div>
 <!-- TABS -->
 <div class="tabs">
-<button id="dashTab"
+<button
+id="dashboardTab"
 class="tab active"
-onclick="showDash()">
+onclick="showDashboard()">
 Dashboard
 </button>
-<button id="newTab"
+<button
+id="newTab"
 class="tab"
 onclick="showNew()">
 New Trade
 </button>
 </div>
+<!-- AI COACH -->
+<section class="panel coach">
+<div class="coach-header">
+<div class="robot">
+🤖
+</div>
+<div>
+<div class="coach-title">
+AI Coach
+</div>
+<div class="coach-sub">
+Твоят trading discipline assistant
+</div>
+</div>
+</div>
+<div
+id="coachMessage"
+class="coach-message">
+Добави сделки, за да анализирам представянето ти.
+</div>
+<div
+id="coachStats">
+</div>
+</section>
+<!-- DAILY PERFORMANCE -->
+<section class="panel">
+<div class="month-controls">
+<button onclick="changeMonth(-1)">
+‹
+</button>
+<div
+id="monthTitle"
+class="month-title">
+</div>
+<button onclick="changeMonth(1)">
+›
+</button>
+</div>
+<div class="calendar">
+<div class="weekday">П</div>
+<div class="weekday">В</div>
+<div class="weekday">С</div>
+<div class="weekday">Ч</div>
+<div class="weekday">П</div>
+<div class="weekday">С</div>
+<div class="weekday">Н</div>
+</div>
+<div
+id="calendar"
+class="calendar">
+</div>
+</section>
 <!-- NEW TRADE -->
-<section id="newPanel"
+<section
+id="newPanel"
 class="panel"
 style="display:none">
-<h2 style="margin-top:0">
-Нова сделка
-</h2>
+<div class="panel-title">
+📈 Нова сделка
+</div>
 <form id="tradeForm">
 <div class="field">
-<label>Symbol</label>
+<label>
+Symbol
+</label>
 <input
 id="symbol"
 value="XAUUSD"
 required>
 </div>
 <div class="field">
-<label>Посока</label>
+<label>
+Посока
+</label>
 <select id="side">
 <option>BUY</option>
 <option>SELL</option>
 </select>
 </div>
 <div class="field">
-<label>Status</label>
+<label>
+Status
+</label>
 <select id="status">
 <option>Closed</option>
 <option>Open</option>
 </select>
 </div>
 <div class="field">
-<label>Entry</label>
+<label>
+Entry
+</label>
 <input
 id="entry"
 type="number"
@@ -272,14 +507,18 @@ step="0.01"
 required>
 </div>
 <div class="field">
-<label>Exit</label>
+<label>
+Exit
+</label>
 <input
 id="exit"
 type="number"
 step="0.01">
 </div>
 <div class="field">
-<label>Lot</label>
+<label>
+Lot
+</label>
 <input
 id="lot"
 type="number"
@@ -288,44 +527,54 @@ value="0.02"
 required>
 </div>
 <div class="field">
-<label>Stop Loss</label>
+<label>
+Stop Loss
+</label>
 <input
 id="sl"
 type="number"
 step="0.01">
 </div>
 <div class="field">
-<label>Take Profit</label>
+<label>
+Take Profit
+</label>
 <input
 id="tp"
 type="number"
 step="0.01">
 </div>
 <div class="field">
-<label>Risk $</label>
+<label>
+Risk $
+</label>
 <input
 id="risk"
 type="number"
 step="0.01">
 </div>
 <div class="field">
-<label>Дата</label>
+<label>
+Дата
+</label>
 <input
 id="date"
 type="datetime-local"
 required>
 </div>
 <div class="field full">
-<label>Бележки</label>
+<label>
+Бележки
+</label>
 <textarea
 id="notes"
-placeholder="Защо влезе? Какво видя на 4H / 1H / 15M?">
+placeholder="4H посока → 1H потвърждение → 15M entry...">
 </textarea>
 </div>
 <div class="actions full">
 <button
 type="button"
-onclick="showDash()">
+onclick="showDashboard()">
 Отказ
 </button>
 <button
@@ -335,72 +584,91 @@ class="primary">
 </div>
 </form>
 </section>
-<!-- DASHBOARD -->
+<!-- TRADES -->
 <section
-id="dashPanel"
+id="dashboardPanel"
 class="panel">
 <div
 style="
 display:flex;
 justify-content:space-between;
 align-items:center;
-gap:8px">
-<h2 style="margin:0">
-Сделки
-</h2>
+margin-bottom:10px">
+<div class="panel-title">
+📋 Сделки
+</div>
 <button
-onclick="clearAll()"
-class="danger">
-Изчисти всички
+class="danger"
+onclick="clearAll()">
+Изчисти
 </button>
 </div>
 <div id="trades"></div>
 </section>
 </div>
 <script>
-const KEY="goldjournal_trades_v1";
-let trades=
+/* =========================
+   STORAGE
+========================= */
+const STORAGE_KEY =
+"goldjournal_pro_v1";
+let trades =
 JSON.parse(
-localStorage.getItem(KEY)||"[]"
+localStorage.getItem(STORAGE_KEY) || "[]"
 );
-const $=id=>
-document.getElementById(id);
-/* SHOW NEW */
+let calendarDate =
+new Date();
+const $ =
+id => document.getElementById(id);
+/* =========================
+   STORAGE SAVE
+========================= */
+function save(){
+localStorage.setItem(
+STORAGE_KEY,
+JSON.stringify(trades)
+);
+render();
+}
+/* =========================
+   NAVIGATION
+========================= */
 function showNew(){
-$("newPanel").style.display="block";
-$("dashPanel").style.display="none";
+$("newPanel").style.display =
+"block";
+$("dashboardPanel").style.display =
+"none";
 $("newTab").classList.add("active");
-$("dashTab").classList.remove("active");
-$("date").value=
+$("dashboardTab")
+.classList.remove("active");
+$("date").value =
 new Date(
-Date.now()-
+Date.now() -
 new Date().getTimezoneOffset()*60000
 )
 .toISOString()
 .slice(0,16);
 }
-/* SHOW DASHBOARD */
-function showDash(){
-$("newPanel").style.display="none";
-$("dashPanel").style.display="block";
-$("dashTab").classList.add("active");
-$("newTab").classList.remove("active");
+function showDashboard(){
+$("newPanel").style.display =
+"none";
+$("dashboardPanel").style.display =
+"block";
+$("dashboardTab")
+.classList.add("active");
+$("newTab")
+.classList.remove("active");
 render();
 }
-/* SAVE */
-function save(){
-localStorage.setItem(
-KEY,
-JSON.stringify(trades)
-);
-render();
-}
-/* ADD TRADE */
-$("tradeForm").addEventListener(
+/* =========================
+   NEW TRADE
+========================= */
+$("tradeForm")
+.addEventListener(
 "submit",
 function(e){
 e.preventDefault();
-const t={
+const trade = {
 id:Date.now(),
 symbol:
 $("symbol").value
@@ -411,184 +679,380 @@ $("side").value,
 status:
 $("status").value,
 entry:
-+$("entry").value,
+Number($("entry").value),
 exit:
-$("exit").value===""
-?null
-:+$("exit").value,
+$("exit").value === ""
+?
+null
+:
+Number($("exit").value),
 lot:
-+$("lot").value,
+Number($("lot").value),
 sl:
-$("sl").value===""
-?null
-:+$("sl").value,
+$("sl").value === ""
+?
+null
+:
+Number($("sl").value),
 tp:
-$("tp").value===""
-?null
-:+$("tp").value,
+$("tp").value === ""
+?
+null
+:
+Number($("tp").value),
 risk:
-$("risk").value===""
-?null
-:+$("risk").value,
+$("risk").value === ""
+?
+null
+:
+Number($("risk").value),
 date:
 $("date").value,
 notes:
 $("notes").value
 };
-trades.unshift(t);
+trades.unshift(trade);
 save();
 e.target.reset();
-$("symbol").value="XAUUSD";
-$("lot").value="0.02";
-showDash();
+$("symbol").value =
+"XAUUSD";
+$("lot").value =
+"0.02";
+showDashboard();
 });
-/* P&L */
-function pnl(t){
+/* =========================
+   P&L
+========================= */
+function getPnl(t){
 if(
-t.status!=="Closed" ||
-t.exit===null
+t.status !== "Closed" ||
+t.exit === null
 )
 return 0;
-const diff=
-t.side==="BUY"
+const difference =
+t.side === "BUY"
 ?
-t.exit-t.entry
+t.exit - t.entry
 :
-t.entry-t.exit;
-return diff*t.lot*100;
+t.entry - t.exit;
+/*
+ XAUUSD standard
+ contract size = 100
+*/
+return difference *
+t.lot *
+100;
 }
-/* R MULTIPLE */
-function rmult(t){
-if(
-!t.risk ||
-pnl(t)===0
+/* =========================
+   DATE
+========================= */
+function localDateString(date){
+return date.toISOString()
+.split("T")[0];
+}
+function tradeDate(t){
+return t.date.split("T")[0];
+}
+/* =========================
+   TODAY
+========================= */
+function todayPnl(){
+const today =
+localDateString(new Date());
+return trades
+.filter(
+t =>
+tradeDate(t) === today &&
+t.status === "Closed"
 )
-return null;
-return pnl(t)/t.risk;
-}
-/* DELETE */
-function del(id){
-trades=
-trades.filter(
-t=>t.id!==id
+.reduce(
+(sum,t) =>
+sum + getPnl(t),
+0
 );
-save();
 }
-/* EDIT */
-function edit(id){
-const t=
-trades.find(
-x=>x.id===id
+/* =========================
+   CALENDAR
+========================= */
+function changeMonth(amount){
+calendarDate.setMonth(
+calendarDate.getMonth()+amount
 );
-if(!t)return;
-$("symbol").value=t.symbol;
-$("side").value=t.side;
-$("status").value=t.status;
-$("entry").value=t.entry;
-$("exit").value=
-t.exit??"";
-$("lot").value=t.lot;
-$("sl").value=
-t.sl??"";
-$("tp").value=
-t.tp??"";
-$("risk").value=
-t.risk??"";
-$("date").value=t.date;
-$("notes").value=
-t.notes||"";
-trades=
-trades.filter(
-x=>x.id!==id
-);
-showNew();
+renderCalendar();
 }
-/* CLEAR */
-function clearAll(){
-if(
-confirm(
-"Да изтрия ли всички сделки?"
-)
+function renderCalendar(){
+const year =
+calendarDate.getFullYear();
+const month =
+calendarDate.getMonth();
+$("monthTitle").textContent =
+new Intl.DateTimeFormat(
+"bg-BG",
+{
+month:"long",
+year:"numeric"
+}
+).format(calendarDate);
+const container =
+$("calendar");
+container.innerHTML = "";
+const first =
+new Date(year,month,1);
+let startDay =
+first.getDay();
+startDay =
+startDay === 0
+?
+6
+:
+startDay-1;
+const days =
+new Date(
+year,
+month+1,
+0
+).getDate();
+/* EMPTY DAYS */
+for(
+let i=0;
+i<startDay;
+i++
 ){
-trades=[];
-save();
+const empty =
+document.createElement("div");
+empty.className="day";
+empty.style.opacity=".15";
+container.appendChild(empty);
 }
-}
-/* RENDER */
-function render(){
-const closed=
+/* DAYS */
+for(
+let day=1;
+day<=days;
+day++
+){
+const d =
+new Date(
+year,
+month,
+day
+);
+const dateString =
+localDateString(d);
+const dailyTrades =
 trades.filter(
-t=>t.status==="Closed"
+t =>
+tradeDate(t) === dateString &&
+t.status === "Closed"
 );
-const total=
+const pnl =
+dailyTrades.reduce(
+(sum,t) =>
+sum+getPnl(t),
+0
+);
+const el =
+document.createElement("div");
+el.className =
+"day";
+if(pnl>0)
+el.classList.add("win");
+if(pnl<0)
+el.classList.add("loss");
+if(
+dateString ===
+localDateString(new Date())
+)
+el.classList.add("today");
+el.innerHTML = `
+<div class="day-number">
+${day}
+</div>
+<div class="day-pnl">
+${
+dailyTrades.length
+?
+(
+pnl>=0
+?
+"+$"
+:
+"-$"
+)+Math.abs(pnl).toFixed(2)
+:
+"—"
+}
+</div>
+`;
+container.appendChild(el);
+}
+}
+/* =========================
+   AI COACH
+========================= */
+function coach(){
+const closed =
+trades.filter(
+t => t.status === "Closed"
+);
+const message =
+$("coachMessage");
+const stats =
+$("coachStats");
+if(!closed.length){
+message.innerHTML =
+"👋 <b>Добре дошъл.</b><br><br>"+
+"Добави първата си сделка и ще започна да следя твоята дисциплина, риск и резултати.";
+stats.innerHTML="";
+return;
+}
+const totalPnl =
 closed.reduce(
-(a,t)=>a+pnl(t),
+(sum,t)=>sum+getPnl(t),
 0
 );
-const wins=
+const wins =
 closed.filter(
-t=>pnl(t)>0
+t=>getPnl(t)>0
 ).length;
-const grossWin=
+const losses =
+closed.filter(
+t=>getPnl(t)<0
+).length;
+const winRate =
+wins/closed.length*100;
+const totalRisk =
 closed
-.filter(t=>pnl(t)>0)
+.filter(t=>t.risk)
 .reduce(
-(a,t)=>a+pnl(t),
+(sum,t)=>sum+t.risk,
 0
 );
-const grossLoss=
-Math.abs(
-closed
-.filter(t=>pnl(t)<0)
-.reduce(
-(a,t)=>a+pnl(t),
-0
-)
+const avgRisk =
+totalRisk /
+Math.max(
+1,
+closed.filter(t=>t.risk).length
 );
-$("pnl").textContent=
-(total>=0?"+$":"-$")+
-Math.abs(total).toFixed(2);
-$("pnl").className=
-"value "+
-(total>=0?"green":"red");
-$("winrate").textContent=
-(
-closed.length
-?
-wins/closed.length*100
-:
-0
-)
-.toFixed(1)+"%";
-$("count").textContent=
-trades.length;
-$("pf").textContent=
-(
-grossLoss
-?
-grossWin/grossLoss
-:
-0
-)
-.toFixed(2);
+const today =
+todayPnl();
+const todayTrades =
+closed.filter(
+t =>
+tradeDate(t) ===
+localDateString(new Date())
+);
+let advice=[];
+/* DISCIPLINE */
+if(todayTrades.length >= 2){
+advice.push(
+"⚠️ Имаш 2+ сделки днес. Внимавай с overtrading."
+);
+}
+/* RISK */
+if(avgRisk > 25){
+advice.push(
+"⚠️ Средният ти риск е над $25. Намали размера на позицията или увеличи дисциплината около SL."
+);
+}
+else if(avgRisk > 0){
+advice.push(
+"✅ Средният ти риск е в контролирана зона."
+);
+}
+/* WIN RATE */
+if(winRate >= 60){
+advice.push(
+"📈 Win rate е над 60%. Продължи да следваш същия процес."
+);
+}
+else if(
+closed.length >= 5 &&
+winRate < 40
+){
+advice.push(
+"⚠️ Win rate е под 40%. Прегледай последните сделки и търси повтаряща се грешка."
+);
+}
+/* DAILY */
+if(today > 0){
+advice.push(
+"🟢 Днес си на плюс. Ако планът ти е достигнат, няма нужда да търсиш още сделки."
+);
+}
+else if(today < 0){
+advice.push(
+"🔴 Днес си на минус. Не търси revenge trade."
+);
+}
+else{
+advice.push(
+"⚪ Днес нямаш реализиран P&L."
+);
+}
+/* MESSAGE */
+let headline;
+if(totalPnl > 0){
+headline =
+"📈 Като цяло си на плюс. Фокусът ти трябва да остане върху повторяемия процес, а не върху една отделна сделка.";
+}
+else if(totalPnl < 0){
+headline =
+"📉 В момента си на минус. Не се опитвай да го връщаш с по-голям риск. Анализирай процеса.";
+}
+else{
+headline =
+"⚪ Все още няма достатъчно резултати за сериозна оценка.";
+}
+message.innerHTML =
+headline;
+stats.innerHTML = `
+<div class="advice">
+${advice
+.map(x=>`<div style="margin-bottom:7px">${x}</div>`)
+.join("")}
+</div>
+<div style="margin-top:12px">
+<div class="stat-row">
+<span>Общо сделки</span>
+<b>${closed.length}</b>
+</div>
+<div class="stat-row">
+<span>Печеливши</span>
+<b class="green">${wins}</b>
+</div>
+<div class="stat-row">
+<span>Губещи</span>
+<b class="red">${losses}</b>
+</div>
+<div class="stat-row">
+<span>Среден риск</span>
+<b>$${avgRisk.toFixed(2)}</b>
+</div>
+</div>
+`;
+}
+/* =========================
+   TRADES
+========================= */
+function renderTrades(){
+const container =
+$("trades");
 if(!trades.length){
-$("trades").innerHTML=
+container.innerHTML =
 `
 <div class="empty">
-Още няма сделки.
-<br>
+Няма сделки.
+<br><br>
 Натисни
-„＋ Нова сделка“.
+<b>＋ Нова сделка</b>.
 </div>
 `;
 return;
 }
-$("trades").innerHTML=
+container.innerHTML =
 trades.map(t=>{
-const p=pnl(t);
-const r=rmult(t);
-const open=
-t.status==="Open";
+const pnl =
+getPnl(t);
 return `
 <div class="trade">
 <div>
@@ -596,8 +1060,10 @@ return `
 <br>
 <span class="${
 t.side==="BUY"
-?"buy"
-:"sell"
+?
+"buy"
+:
+"sell"
 }">
 ${t.side}
 </span>
@@ -617,7 +1083,7 @@ ${t.entry}
 Exit
 </span>
 <br>
-${t.exit??"—"}
+${t.exit ?? "—"}
 </div>
 <div>
 <span class="small">
@@ -628,45 +1094,176 @@ ${t.lot}
 </div>
 <div>
 <span class="small">
-P&L / R
+P&L
 </span>
 <br>
 <b class="${
-p>=0
-?"green"
-:"red"
+pnl>=0
+?
+"green"
+:
+"red"
 }">
 ${
-open
+t.status==="Open"
 ?
 "—"
 :
-(p>=0?"+$":"-$")+
-Math.abs(p).toFixed(2)
+(pnl>=0?"+$":"-$")+
+Math.abs(pnl).toFixed(2)
 }
 </b>
-${
-r!==null
-?
-" / "+r.toFixed(2)+"R"
-:
-""
-}
 </div>
 <div>
 <button
-onclick="edit(${t.id})">
+onclick="editTrade(${t.id})">
 Edit
 </button>
 <button
 class="danger"
-onclick="del(${t.id})">
+onclick="deleteTrade(${t.id})">
 ×
 </button>
 </div>
 </div>
 `;
 }).join("");
+}
+/* =========================
+   EDIT
+========================= */
+function editTrade(id){
+const t =
+trades.find(
+x=>x.id===id
+);
+if(!t)return;
+$("symbol").value=t.symbol;
+$("side").value=t.side;
+$("status").value=t.status;
+$("entry").value=t.entry;
+$("exit").value=
+t.exit ?? "";
+$("lot").value=t.lot;
+$("sl").value=
+t.sl ?? "";
+$("tp").value=
+t.tp ?? "";
+$("risk").value=
+t.risk ?? "";
+$("date").value=t.date;
+$("notes").value=
+t.notes || "";
+trades =
+trades.filter(
+x=>x.id!==id
+);
+showNew();
+}
+/* =========================
+   DELETE
+========================= */
+function deleteTrade(id){
+trades =
+trades.filter(
+t=>t.id!==id
+);
+save();
+}
+function clearAll(){
+if(
+confirm(
+"Сигурен ли си, че искаш да изтриеш всички сделки?"
+)
+){
+trades=[];
+save();
+}
+}
+/* =========================
+   MAIN RENDER
+========================= */
+function render(){
+const closed =
+trades.filter(
+t=>t.status==="Closed"
+);
+const total =
+closed.reduce(
+(sum,t)=>sum+getPnl(t),
+0
+);
+const today =
+todayPnl();
+const wins =
+closed.filter(
+t=>getPnl(t)>0
+).length;
+const grossWin =
+closed
+.filter(t=>getPnl(t)>0)
+.reduce(
+(sum,t)=>sum+getPnl(t),
+0
+);
+const grossLoss =
+Math.abs(
+closed
+.filter(t=>getPnl(t)<0)
+.reduce(
+(sum,t)=>sum+getPnl(t),
+0
+)
+);
+$("totalPnl").textContent =
+(total>=0?"+$":"-$")+
+Math.abs(total).toFixed(2);
+$("totalPnl").className =
+"value "+
+(
+total>=0
+?
+"green"
+:
+"red"
+);
+$("todayPnl").textContent =
+(today>=0?"+$":"-$")+
+Math.abs(today).toFixed(2);
+$("todayPnl").className =
+"value "+
+(
+today>0
+?
+"green"
+:
+today<0
+?
+"red"
+:
+"yellow"
+);
+$("winRate").textContent =
+(
+closed.length
+?
+wins/closed.length*100
+:
+0
+)
+.toFixed(1)+"%";
+$("profitFactor").textContent =
+(
+grossLoss
+?
+grossWin/grossLoss
+:
+0
+)
+.toFixed(2);
+renderTrades();
+renderCalendar();
+coach();
 }
 render();
 </script>
