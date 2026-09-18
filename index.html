@@ -2,1691 +2,1462 @@
 <html lang="bg">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#080a0f">
-<title>GoldJournal PRO 2.0</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#080b10">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Gold Journal">
+
+<link rel="manifest" href="manifest.json">
+
+<title>Gold Journal</title>
+
 <style>
 *{
     box-sizing:border-box;
-}
-body{
     margin:0;
-    background:
-        radial-gradient(circle at 20% 0%,rgba(240,185,11,.08),transparent 30%),
-        radial-gradient(circle at 100% 20%,rgba(70,220,150,.05),transparent 30%),
-        #080a0f;
-    color:#f5f7fb;
+    padding:0;
+}
+
+body{
+    background:#080b10;
+    color:#f5f7fa;
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    min-height:100vh;
+    padding-bottom:90px;
 }
-.wrap{
-    max-width:1150px;
+
+button,input,textarea{
+    font:inherit;
+}
+
+.app{
+    width:100%;
+    max-width:1100px;
     margin:auto;
-    padding:20px;
+    padding:18px;
 }
+
 /* HEADER */
-header{
+
+.header{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-bottom:22px;
+    margin-bottom:18px;
 }
-.brand{
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
+
 .logo{
-    width:48px;
-    height:48px;
-    border-radius:15px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:25px;
-    background:linear-gradient(135deg,#f0b90b,#ffdc5b);
-    box-shadow:0 8px 30px rgba(240,185,11,.18);
-}
-.title{
-    font-size:25px;
-    font-weight:900;
-}
-.subtitle{
-    color:#7f8796;
-    font-size:12px;
-    margin-top:3px;
-}
-button{
-    border:0;
-    border-radius:12px;
-    padding:11px 15px;
-    background:#1a202b;
-    color:#fff;
+    font-size:22px;
     font-weight:800;
-    cursor:pointer;
-    transition:.2s;
 }
-button:hover{
-    transform:translateY(-1px);
-    filter:brightness(1.15);
+
+.logo span{
+    color:#f5c542;
 }
-.primary{
-    background:linear-gradient(135deg,#f0b90b,#e2a900);
-    color:#111;
-    box-shadow:0 7px 22px rgba(240,185,11,.16);
-}
-.danger{
-    background:#351c23;
-    color:#ff8291;
-}
-/* STATS */
-.stats{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:12px;
-}
-.stat{
-    position:relative;
-    overflow:hidden;
-    background:rgba(17,21,29,.9);
-    border:1px solid #222936;
-    border-radius:19px;
-    padding:17px;
-}
-.stat:after{
-    content:"";
-    position:absolute;
-    width:70px;
-    height:70px;
-    right:-25px;
-    bottom:-30px;
-    border-radius:50%;
-    background:#f0b90b;
-    opacity:.04;
-}
-.stat-label{
-    color:#7f8796;
-    font-size:11px;
-    text-transform:uppercase;
-    letter-spacing:.5px;
-}
-.stat-value{
-    font-size:26px;
-    font-weight:900;
-    margin-top:7px;
-}
-.green{
-    color:#48dc98;
-}
-.red{
-    color:#ff6677;
-}
-.yellow{
-    color:#f0b90b;
-}
-.gray{
-    color:#858d9d;
-}
-/* TABS */
-.tabs{
-    display:flex;
-    gap:8px;
-    margin:18px 0;
-}
-.tab.active{
-    background:#f0b90b;
-    color:#111;
-}
-/* PANEL */
-.panel{
-    background:rgba(15,19,27,.92);
-    border:1px solid #222936;
-    border-radius:20px;
-    padding:19px;
-    margin-bottom:15px;
-    box-shadow:0 10px 35px rgba(0,0,0,.12);
-}
-.section-title{
-    font-size:19px;
-    font-weight:900;
-}
-.section-sub{
-    color:#7f8796;
+
+.save-status{
     font-size:12px;
-    margin-top:3px;
+    color:#72e6a3;
 }
+
 /* MONTH SUMMARY */
-.month-summary{
-    display:grid;
-    grid-template-columns:1.4fr 1fr 1fr 1fr;
-    gap:10px;
-    margin-top:15px;
+
+.summary{
+    background:linear-gradient(145deg,#111722,#0d1118);
+    border:1px solid #202936;
+    border-radius:20px;
+    padding:18px;
+    margin-bottom:15px;
 }
-.month-box{
-    background:#0a0d13;
-    border:1px solid #202631;
-    border-radius:15px;
-    padding:13px;
+
+.summary-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
-.month-box .small{
-    color:#737b8b;
-    font-size:10px;
-}
-.month-box .big{
+
+.month-title{
     font-size:20px;
+    font-weight:800;
+}
+
+.month-pnl{
+    font-size:28px;
     font-weight:900;
     margin-top:5px;
 }
+
+.positive{
+    color:#42e88a;
+}
+
+.negative{
+    color:#ff4d5e;
+}
+
+.neutral{
+    color:#b9c0ca;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+    margin-top:16px;
+}
+
+.stat{
+    background:#080c12;
+    border-radius:13px;
+    padding:11px;
+    border:1px solid #1c2530;
+}
+
+.stat-label{
+    color:#7e8998;
+    font-size:11px;
+}
+
+.stat-value{
+    font-size:15px;
+    font-weight:800;
+    margin-top:4px;
+}
+
 /* CALENDAR */
-.calendar-header{
+
+.calendar-box{
+    background:#0d1219;
+    border:1px solid #202936;
+    border-radius:22px;
+    padding:15px;
+}
+
+.calendar-nav{
     display:flex;
+    align-items:center;
     justify-content:space-between;
-    align-items:center;
+    margin-bottom:15px;
 }
-.month-controls{
-    display:flex;
-    align-items:center;
-    gap:9px;
+
+.nav-btn{
+    width:42px;
+    height:42px;
+    border:none;
+    border-radius:13px;
+    background:#171e28;
+    color:white;
+    font-size:22px;
+    cursor:pointer;
 }
-.month-title{
-    min-width:150px;
-    text-align:center;
-    font-size:20px;
+
+.nav-btn:active{
+    transform:scale(.94);
+}
+
+.calendar-month{
+    font-size:19px;
     font-weight:900;
     text-transform:capitalize;
 }
+
+.weekdays{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:5px;
+    margin-bottom:6px;
+}
+
+.weekday{
+    text-align:center;
+    color:#687384;
+    font-size:11px;
+    font-weight:700;
+    padding:5px 0;
+}
+
 .calendar{
     display:grid;
     grid-template-columns:repeat(7,1fr);
-    gap:9px;
-    margin-top:16px;
+    gap:5px;
 }
-.weekday{
-    text-align:center;
-    color:#697181;
-    font-size:11px;
-    font-weight:800;
-    padding-bottom:3px;
-}
+
 .day{
-    min-height:105px;
-    background:#0b0e14;
-    border:1px solid #202631;
-    border-radius:15px;
-    padding:11px;
+    min-height:76px;
+    border-radius:12px;
+    background:#111720;
+    border:1px solid #1c2530;
+    padding:7px;
     position:relative;
     overflow:hidden;
 }
+
+.day.empty{
+    background:transparent;
+    border-color:transparent;
+}
+
 .day-number{
-    font-size:13px;
+    font-size:12px;
+    color:#9ba5b2;
+    font-weight:700;
+}
+
+.day-pnl{
+    font-size:12px;
+    font-weight:900;
+    margin-top:17px;
+    white-space:nowrap;
+}
+
+.day.trading-day{
+    cursor:pointer;
+}
+
+.day.trading-day:hover{
+    border-color:#566273;
+}
+
+.day.win{
+    background:rgba(35,210,115,var(--intensity));
+    border-color:rgba(65,240,140,.35);
+}
+
+.day.loss{
+    background:rgba(240,55,75,var(--intensity));
+    border-color:rgba(255,75,95,.35);
+}
+
+.day.win .day-pnl{
+    color:#58ed9b;
+}
+
+.day.loss .day-pnl{
+    color:#ff6875;
+}
+
+.today{
+    box-shadow:inset 0 0 0 2px #f5c542;
+}
+
+/* ADD BUTTON */
+
+.add-btn{
+    position:fixed;
+    right:20px;
+    bottom:22px;
+    width:62px;
+    height:62px;
+    border-radius:50%;
+    border:none;
+    background:#f5c542;
+    color:#111;
+    font-size:32px;
+    font-weight:500;
+    box-shadow:0 8px 30px rgba(0,0,0,.5);
+    cursor:pointer;
+    z-index:20;
+}
+
+.add-btn:active{
+    transform:scale(.92);
+}
+
+/* MODAL */
+
+.overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.72);
+    backdrop-filter:blur(8px);
+    display:none;
+    align-items:flex-end;
+    justify-content:center;
+    z-index:30;
+}
+
+.overlay.show{
+    display:flex;
+}
+
+.modal{
+    width:100%;
+    max-width:600px;
+    background:#10161e;
+    border:1px solid #27313e;
+    border-radius:25px 25px 0 0;
+    padding:22px;
+    padding-bottom:calc(22px + env(safe-area-inset-bottom));
+    max-height:90vh;
+    overflow-y:auto;
+}
+
+.modal-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.modal-title{
+    font-size:22px;
     font-weight:900;
 }
-.day-info{
-    position:absolute;
-    left:11px;
-    bottom:11px;
+
+.close{
+    width:38px;
+    height:38px;
+    border:none;
+    border-radius:12px;
+    background:#1b232e;
+    color:white;
+    font-size:22px;
 }
-.day-pnl{
+
+.form{
+    display:grid;
+    gap:13px;
+}
+
+label{
+    font-size:12px;
+    color:#8d98a7;
+    display:block;
+    margin-bottom:6px;
+}
+
+input,textarea{
+    width:100%;
+    border:1px solid #283340;
+    background:#080d13;
+    color:white;
+    border-radius:12px;
+    padding:13px;
+    outline:none;
+}
+
+input:focus,textarea:focus{
+    border-color:#f5c542;
+}
+
+textarea{
+    min-height:80px;
+    resize:vertical;
+}
+
+.row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+
+.save-btn{
+    margin-top:5px;
+    width:100%;
+    border:none;
+    border-radius:14px;
+    padding:15px;
+    background:#f5c542;
+    color:#111;
+    font-weight:900;
+    cursor:pointer;
+}
+
+/* TRADE LIST */
+
+.trades-section{
+    margin-top:15px;
+    background:#0d1219;
+    border:1px solid #202936;
+    border-radius:20px;
+    padding:15px;
+}
+
+.section-title{
+    font-size:16px;
+    font-weight:900;
+    margin-bottom:12px;
+}
+
+.trade{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    padding:12px 0;
+    border-bottom:1px solid #1c2530;
+}
+
+.trade:last-child{
+    border-bottom:none;
+}
+
+.trade-info{
+    min-width:0;
+}
+
+.trade-date{
+    font-size:11px;
+    color:#727e8d;
+}
+
+.trade-main{
+    margin-top:3px;
+    font-size:13px;
+    font-weight:800;
+}
+
+.trade-note{
+    color:#737e8b;
+    font-size:11px;
+    margin-top:3px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    max-width:210px;
+}
+
+.trade-pnl{
     font-size:15px;
     font-weight:900;
 }
-.day-trades{
-    color:#788091;
-    font-size:10px;
-    margin-top:3px;
+
+.delete-btn{
+    border:none;
+    background:#1c232d;
+    color:#ff6672;
+    border-radius:9px;
+    padding:7px 9px;
+    margin-left:5px;
 }
-.day.win{
-    background:
-        linear-gradient(145deg,
-        rgba(45,220,145,.23),
-        rgba(20,80,60,.10));
-    border-color:#287958;
-    box-shadow:
-        inset 0 0 25px rgba(55,220,145,.07),
-        0 0 15px rgba(55,220,145,.07);
-}
-.day.loss{
-    background:
-        linear-gradient(145deg,
-        rgba(255,65,85,.23),
-        rgba(90,20,30,.10));
-    border-color:#81323f;
-    box-shadow:
-        inset 0 0 25px rgba(255,65,85,.07),
-        0 0 15px rgba(255,65,85,.06);
-}
-.day.today{
-    outline:2px solid #f0b90b;
-    outline-offset:1px;
-}
-.day.empty{
-    opacity:.12;
-}
-/* COACH */
-.coach{
-    background:
-        radial-gradient(circle at 100% 0%,rgba(240,185,11,.10),transparent 32%),
-        #11151d;
-    border-color:#37321d;
-}
-.coach-top{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    margin-bottom:16px;
-}
-.robot{
-    width:48px;
-    height:48px;
-    border-radius:15px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:25px;
-    background:linear-gradient(135deg,#f0b90b,#ffd75b);
-    color:#111;
-}
-.coach-name{
-    font-size:19px;
-    font-weight:900;
-}
-.coach-description{
-    color:#7f8796;
-    font-size:11px;
-}
-.coach-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:10px;
-    margin-top:15px;
-}
-.coach-card{
-    background:#0a0d13;
-    border:1px solid #242b36;
-    border-radius:14px;
-    padding:12px;
-}
-.coach-card-title{
-    color:#747c8c;
-    font-size:10px;
-    text-transform:uppercase;
-}
-.coach-card-value{
-    margin-top:5px;
-    font-size:18px;
-    font-weight:900;
-}
-.coach-advice{
-    margin-top:13px;
-    padding:14px;
-    background:#0a0d13;
-    border:1px solid #262d39;
-    border-radius:14px;
-    line-height:1.55;
-    font-size:13px;
-}
-.advice-line{
-    padding:8px 0;
-    border-bottom:1px solid #1f2530;
-}
-.advice-line:last-child{
-    border-bottom:0;
-}
-/* FORM */
-form{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:11px;
-}
-.field label{
-    display:block;
-    color:#8c94a4;
-    font-size:11px;
-    margin-bottom:5px;
-}
-input,
-select,
-textarea{
-    width:100%;
-    background:#090c12;
-    border:1px solid #29303d;
-    color:#fff;
-    border-radius:11px;
-    padding:11px;
-    outline:none;
-}
-input:focus,
-select:focus,
-textarea:focus{
-    border-color:#f0b90b;
-}
-textarea{
-    min-height:90px;
-    resize:vertical;
-}
-.full{
-    grid-column:1/-1;
-}
-.actions{
-    display:flex;
-    justify-content:flex-end;
-    gap:8px;
-}
-/* TRADES */
-.trade{
-    display:grid;
-    grid-template-columns:1.2fr .7fr .7fr .7fr .9fr auto;
-    gap:10px;
-    align-items:center;
-    padding:14px 0;
-    border-bottom:1px solid #222936;
-    font-size:13px;
-}
-.trade:last-child{
-    border-bottom:0;
-}
-.small{
-    color:#737b8b;
-    font-size:10px;
-}
-.pill{
-    display:inline-block;
-    padding:4px 7px;
-    border-radius:20px;
-    background:#202631;
-    font-size:9px;
-    margin-left:4px;
-}
-.buy{
-    color:#48dc98;
-}
-.sell{
-    color:#ff7180;
-}
-.empty-message{
+
+.empty-trades{
+    color:#697585;
     text-align:center;
-    color:#747c8c;
-    padding:35px;
+    padding:20px 0;
+    font-size:13px;
 }
-/* MOBILE */
-@media(max-width:750px){
-    .wrap{
-        padding:13px;
-    }
-    header{
-        align-items:flex-start;
-    }
-    .title{
-        font-size:21px;
-    }
-    .logo{
-        width:42px;
-        height:42px;
-    }
-    .stats{
-        grid-template-columns:1fr 1fr;
-    }
-    .stat-value{
-        font-size:21px;
-    }
-    .month-summary{
-        grid-template-columns:1fr 1fr;
-    }
-    .calendar{
-        gap:5px;
-    }
-    .day{
-        min-height:80px;
-        padding:7px;
-        border-radius:11px;
-    }
-    .day-info{
-        left:7px;
-        bottom:7px;
-    }
-    .day-pnl{
-        font-size:11px;
-    }
-    .day-trades{
-        font-size:8px;
-    }
-    .calendar .weekday{
-        font-size:9px;
-    }
-    .coach-grid{
-        grid-template-columns:1fr 1fr;
-    }
-    form{
-        grid-template-columns:1fr 1fr;
-    }
-    .trade{
-        grid-template-columns:1fr 1fr;
-    }
+
+/* BACKUP */
+
+.backup{
+    margin-top:15px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
 }
-@media(max-width:420px){
-    .stats{
-        gap:7px;
+
+.backup button{
+    border:1px solid #27313e;
+    background:#111720;
+    color:#dce1e7;
+    padding:12px;
+    border-radius:12px;
+    font-weight:700;
+}
+
+/* DESKTOP */
+
+@media(min-width:700px){
+    .overlay{
+        align-items:center;
     }
-    .stat{
-        padding:12px;
+
+    .modal{
+        border-radius:25px;
     }
-    .month-title{
-        min-width:125px;
-        font-size:16px;
-    }
+
     .day{
-        min-height:68px;
+        min-height:105px;
     }
+
     .day-pnl{
-        font-size:9px;
-    }
-    .coach-grid{
-        grid-template-columns:1fr 1fr;
+        font-size:14px;
+        margin-top:28px;
     }
 }
 </style>
 </head>
+
 <body>
-<div class="wrap">
-<!-- HEADER -->
-<header>
-<div class="brand">
-<div class="logo">
-🥇
-</div>
-<div>
-<div class="title">
-GoldJournal PRO
-</div>
-<div class="subtitle">
-XAUUSD • Trading Performance System
-</div>
-</div>
-</div>
-<button
-class="primary"
-onclick="showNew()">
-＋ Нова сделка
-</button>
-</header>
-<!-- MAIN STATS -->
-<div class="stats">
-<div class="stat">
-<div class="stat-label">
-Общ P&L
-</div>
-<div
-id="totalPnl"
-class="stat-value">
-$0.00
-</div>
-</div>
-<div class="stat">
-<div class="stat-label">
-Днес
-</div>
-<div
-id="todayPnl"
-class="stat-value">
-$0.00
-</div>
-</div>
-<div class="stat">
-<div class="stat-label">
-Win Rate
-</div>
-<div
-id="winRate"
-class="stat-value">
-0%
-</div>
-</div>
-<div class="stat">
-<div class="stat-label">
-Profit Factor
-</div>
-<div
-id="profitFactor"
-class="stat-value">
-0.00
-</div>
-</div>
-</div>
-<!-- TABS -->
-<div class="tabs">
-<button
-id="dashboardTab"
-class="tab active"
-onclick="showDashboard()">
-Dashboard
-</button>
-<button
-id="newTab"
-class="tab"
-onclick="showNew()">
-New Trade
-</button>
-</div>
-<!-- CALENDAR -->
-<section class="panel">
-<div class="calendar-header">
-<div>
-<div class="section-title">
-📅 Trading Calendar
-</div>
-<div class="section-sub">
-Всеки ден показва реалния ти резултат
-</div>
-</div>
-<div class="month-controls">
-<button onclick="changeMonth(-1)">
-‹
-</button>
-<div
-id="monthTitle"
-class="month-title">
-</div>
-<button onclick="changeMonth(1)">
-›
-</button>
-</div>
-</div>
-<!-- MONTH SUMMARY -->
-<div class="month-summary">
-<div class="month-box">
-<div class="small">
-МЕСЕЧЕН P&L
-</div>
-<div
-id="monthPnl"
-class="big">
-$0.00
-</div>
-</div>
-<div class="month-box">
-<div class="small">
-ПЕЧЕЛИВШИ ДНИ
-</div>
-<div
-id="winningDays"
-class="big green">
-0
-</div>
-</div>
-<div class="month-box">
-<div class="small">
-ГУБЕЩИ ДНИ
-</div>
-<div
-id="losingDays"
-class="big red">
-0
-</div>
-</div>
-<div class="month-box">
-<div class="small">
-НАЙ-ДОБЪР ДЕН
-</div>
-<div
-id="bestDay"
-class="big green">
-—
-</div>
-</div>
-</div>
-<!-- CALENDAR -->
-<div
-class="calendar"
-style="margin-top:18px">
-<div class="weekday">
-П
-</div>
-<div class="weekday">
-В
-</div>
-<div class="weekday">
-С
-</div>
-<div class="weekday">
-Ч
-</div>
-<div class="weekday">
-П
-</div>
-<div class="weekday">
-С
-</div>
-<div class="weekday">
-Н
-</div>
-</div>
-<div
-id="calendar"
-class="calendar">
-</div>
-</section>
-<!-- AI COACH -->
-<section class="panel coach">
-<div class="coach-top">
-<div class="robot">
-🤖
-</div>
-<div>
-<div class="coach-name">
-AI Coach
-</div>
-<div class="coach-description">
-Анализ на твоя риск, резултати и trading discipline
-</div>
-</div>
-</div>
-<div
-id="coachMain">
-Добави сделки, за да започна анализа.
-</div>
-<div
-id="coachGrid"
-class="coach-grid">
-</div>
-<div
-id="coachAdvice"
-class="coach-advice">
-</div>
-</section>
-<!-- NEW TRADE -->
-<section
-id="newPanel"
-class="panel"
-style="display:none">
-<div class="section-title">
-📈 Нова сделка
-</div>
-<div class="section-sub">
-Въведи сделката точно както е изпълнена в MT5.
-</div>
-<br>
-<form id="tradeForm">
-<div class="field">
-<label>
-Symbol
-</label>
-<input
-id="symbol"
-value="XAUUSD"
-required>
-</div>
-<div class="field">
-<label>
-Посока
-</label>
-<select id="side">
-<option>BUY</option>
-<option>SELL</option>
-</select>
-</div>
-<div class="field">
-<label>
-Status
-</label>
-<select id="status">
-<option>Closed</option>
-<option>Open</option>
-</select>
-</div>
-<div class="field">
-<label>
-Entry
-</label>
-<input
-id="entry"
-type="number"
-step="0.01"
-required>
-</div>
-<div class="field">
-<label>
-Exit
-</label>
-<input
-id="exit"
-type="number"
-step="0.01">
-</div>
-<div class="field">
-<label>
-Lot
-</label>
-<input
-id="lot"
-type="number"
-step="0.01"
-value="0.02"
-required>
-</div>
-<div class="field">
-<label>
-Stop Loss
-</label>
-<input
-id="sl"
-type="number"
-step="0.01">
-</div>
-<div class="field">
-<label>
-Take Profit
-</label>
-<input
-id="tp"
-type="number"
-step="0.01">
-</div>
-<div class="field">
-<label>
-Risk $
-</label>
-<input
-id="risk"
-type="number"
-step="0.01">
-</div>
-<div class="field">
-<label>
-Дата
-</label>
-<input
-id="date"
-type="datetime-local"
-required>
-</div>
-<div class="field full">
-<label>
-Бележки
-</label>
-<textarea
-id="notes"
-placeholder="4H посока → 1H confirmation → 15M entry → BOS/FVG/OB...">
-</textarea>
-</div>
-<div class="actions full">
-<button
-type="button"
-onclick="showDashboard()">
-Отказ
-</button>
-<button
-class="primary">
-Запази сделката
-</button>
-</div>
-</form>
-</section>
-<!-- TRADES -->
-<section
-id="dashboardPanel"
-class="panel">
-<div style="
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:8px">
-<div>
-<div class="section-title">
-📋 Trade History
-</div>
-<div class="section-sub">
-Всички изпълнени сделки
-</div>
-</div>
-<button
-class="danger"
-onclick="clearAll()">
-Изчисти
-</button>
-</div>
-<div id="trades"></div>
-</section>
-</div>
+
+<div class="app">
+
+    <div class="header">
+        <div class="logo">🥇 Gold <span>Journal</span></div>
+        <div class="save-status" id="saveStatus">● Запазено</div>
+    </div>
+
+    <div class="summary">
+
+        <div class="summary-top">
+            <div>
+                <div class="month-title" id="summaryMonth"></div>
+                <div class="month-pnl neutral" id="monthPnl">$0.00</div>
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-label">Печеливши дни</div>
+                <div class="stat-value positive" id="winDays">0</div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-label">Губещи дни</div>
+                <div class="stat-value negative" id="lossDays">0</div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-label">Сделки</div>
+                <div class="stat-value" id="tradeCount">0</div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="calendar-box">
+
+        <div class="calendar-nav">
+            <button class="nav-btn" onclick="changeMonth(-1)">‹</button>
+
+            <div class="calendar-month" id="calendarMonth"></div>
+
+            <button class="nav-btn" onclick="changeMonth(1)">›</button>
+        </div>
+
+        <div class="weekdays">
+            <div class="weekday">П</div>
+            <div class="weekday">В</div>
+            <div class="weekday">С</div>
+            <div class="weekday">Ч</div>
+            <div class="weekday">П</div>
+            <div class="weekday">С</div>
+            <div class="weekday">Н</div>
+        </div>
+
+        <div class="calendar" id="calendar"></div>
+
+    </div>
+
+    <div class="trades-section">
+
+        <div class="section-title">
+            Последни сделки
+        </div>
+
+        <div id="tradeList"></div>
+
+        <div class="backup">
+            <button onclick="exportData()">⬇ Backup</button>
+            <button onclick="document.getElementById('importFile').click()">⬆ Restore</button>
+            <input id="importFile" type="file" accept=".json" style="display:none">
+        </div>
+
+    </div>
+
+</div>
+
+<button class="add-btn" onclick="openModal()">+</button>
+
+<!-- MODAL -->
+
+<div class="overlay" id="overlay">
+
+    <div class="modal">
+
+        <div class="modal-header">
+            <div class="modal-title">Нова сделка</div>
+            <button class="close" onclick="closeModal()">×</button>
+        </div>
+
+        <form class="form" id="tradeForm">
+
+            <div>
+                <label>Дата</label>
+                <input type="date" id="tradeDate" required>
+            </div>
+
+            <div class="row">
+
+                <div>
+                    <label>Entry</label>
+                    <input type="number" step="0.01" id="entry" placeholder="3650.20">
+                </div>
+
+                <div>
+                    <label>Exit</label>
+                    <input type="number" step="0.01" id="exit" placeholder="3660.20">
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div>
+                    <label>Lot</label>
+                    <input type="number" step="0.01" id="lot" placeholder="0.02">
+                </div>
+
+                <div>
+                    <label>P&L ($)</label>
+                    <input type="number" step="0.01" id="pnl" placeholder="+25">
+                </div>
+
+            </div>
+
+            <div>
+                <label>Бележка</label>
+                <textarea id="notes" placeholder="Напр. 4H trend + 15M entry..."></textarea>
+            </div>
+
+            <button class="save-btn" type="submit">
+                ЗАПАЗИ СДЕЛКАТА
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
 <script>
-/* ================================
-   STORAGE
-================================ */
-const STORAGE_KEY =
-"goldjournal_pro_v2";
-let trades =
-JSON.parse(
-localStorage.getItem(STORAGE_KEY) || "[]"
+
+/* =========================================================
+   DATABASE
+========================================================= */
+
+const DB_NAME = "GoldJournalDB";
+const DB_VERSION = 1;
+const STORE = "trades";
+
+let db;
+let trades = [];
+
+let currentMonth = new Date(
+    new Date().getFullYear(),
+    new Date().getMonth(),
+    1
 );
-/* import old version */
-if(!trades.length){
-const old =
-localStorage.getItem(
-"goldjournal_pro_v1"
-);
-if(old){
-try{
-trades =
-JSON.parse(old);
-}catch(e){}
+
+
+/* OPEN DATABASE */
+
+function openDB(){
+
+    return new Promise((resolve,reject)=>{
+
+        const request =
+            indexedDB.open(DB_NAME,DB_VERSION);
+
+        request.onupgradeneeded = function(e){
+
+            const database = e.target.result;
+
+            if(!database.objectStoreNames.contains(STORE)){
+
+                const store =
+                    database.createObjectStore(
+                        STORE,
+                        {keyPath:"id"}
+                    );
+
+                store.createIndex(
+                    "date",
+                    "date",
+                    {unique:false}
+                );
+            }
+        };
+
+        request.onsuccess = function(e){
+
+            db = e.target.result;
+            resolve(db);
+
+        };
+
+        request.onerror = function(){
+
+            reject(request.error);
+
+        };
+
+    });
+
 }
+
+
+/* GET ALL */
+
+function getTrades(){
+
+    return new Promise((resolve,reject)=>{
+
+        const tx =
+            db.transaction(STORE,"readonly");
+
+        const store =
+            tx.objectStore(STORE);
+
+        const request =
+            store.getAll();
+
+        request.onsuccess = () =>
+            resolve(request.result || []);
+
+        request.onerror = () =>
+            reject(request.error);
+
+    });
+
 }
-let calendarDate =
-new Date();
-const $ =
-id => document.getElementById(id);
-/* ================================
-   SAVE
-================================ */
-function save(){
-localStorage.setItem(
-STORAGE_KEY,
-JSON.stringify(trades)
-);
-render();
+
+
+/* SAVE */
+
+function saveTrade(trade){
+
+    return new Promise((resolve,reject)=>{
+
+        const tx =
+            db.transaction(STORE,"readwrite");
+
+        tx.objectStore(STORE).put(trade);
+
+        tx.oncomplete = () =>
+            resolve();
+
+        tx.onerror = () =>
+            reject(tx.error);
+
+    });
+
 }
-/* ================================
-   NAVIGATION
-================================ */
-function showNew(){
-$("newPanel").style.display="block";
-$("dashboardPanel").style.display="none";
-$("newTab").classList.add("active");
-$("dashboardTab")
-.classList.remove("active");
-$("date").value =
-new Date(
-Date.now() -
-new Date().getTimezoneOffset()*60000
-)
-.toISOString()
-.slice(0,16);
-}
-function showDashboard(){
-$("newPanel").style.display="none";
-$("dashboardPanel").style.display="block";
-$("dashboardTab")
-.classList.add("active");
-$("newTab")
-.classList.remove("active");
-render();
-}
-/* ================================
-   P&L
-================================ */
-function getPnl(t){
-if(
-t.status !== "Closed" ||
-t.exit === null
-)
-return 0;
-const diff =
-t.side === "BUY"
-?
-t.exit - t.entry
-:
-t.entry - t.exit;
-/*
-XAUUSD:
-100 oz contract
-*/
-return diff *
-t.lot *
-100;
-}
-/* ================================
-   DATE
-================================ */
-function dateOnly(t){
-return t.date.split("T")[0];
-}
-function todayString(){
-return new Date()
-.toISOString()
-.split("T")[0];
-}
-/* ================================
-   TODAY
-================================ */
-function todayPnl(){
-return trades
-.filter(
-t =>
-t.status==="Closed" &&
-dateOnly(t)===todayString()
-)
-.reduce(
-(sum,t)=>sum+getPnl(t),
-0
-);
-}
-/* ================================
-   CALENDAR
-================================ */
-function changeMonth(amount){
-calendarDate.setMonth(
-calendarDate.getMonth()+amount
-);
-renderCalendar();
-}
-function renderCalendar(){
-const year =
-calendarDate.getFullYear();
-const month =
-calendarDate.getMonth();
-$("monthTitle").textContent =
-new Intl.DateTimeFormat(
-"bg-BG",
-{
-month:"long",
-year:"numeric"
-}
-).format(calendarDate);
-const first =
-new Date(year,month,1);
-let start =
-first.getDay();
-start =
-start===0
-?
-6
-:
-start-1;
-const days =
-new Date(
-year,
-month+1,
-0
-).getDate();
-const container =
-$("calendar");
-container.innerHTML="";
-/* blank */
-for(
-let i=0;
-i<start;
-i++
-){
-const blank =
-document.createElement("div");
-blank.className=
-"day empty";
-container.appendChild(blank);
-}
-/* days */
-let monthPnl=0;
-let winning=0;
-let losing=0;
-let best=-Infinity;
-let bestDate="—";
-for(
-let day=1;
-day<=days;
-day++
-){
-const d =
-new Date(
-year,
-month,
-day
-);
-const date =
-d.toISOString()
-.split("T")[0];
-const dayTrades =
-trades.filter(
-t =>
-t.status==="Closed" &&
-dateOnly(t)===date
-);
-const pnl =
-dayTrades.reduce(
-(sum,t)=>sum+getPnl(t),
-0
-);
-monthPnl+=pnl;
-if(pnl>0){
-winning++;
-if(pnl>best){
-best=pnl;
-bestDate=day;
-}
-}
-if(pnl<0){
-losing++;
-}
-const el =
-document.createElement("div");
-el.className="day";
-if(pnl>0)
-el.classList.add("win");
-if(pnl<0)
-el.classList.add("loss");
-if(date===todayString())
-el.classList.add("today");
-el.innerHTML=`
-<div class="day-number">
-${day}
-</div>
-<div class="day-info">
-<div class="day-pnl">
-${
-dayTrades.length
-?
-(pnl>=0?"+$":"-$")+
-Math.abs(pnl).toFixed(2)
-:
-"—"
-}
-</div>
-<div class="day-trades">
-${
-dayTrades.length
-?
-dayTrades.length+
-(dayTrades.length===1
-?
-" сделка"
-:
-" сделки")
-:
-"Няма сделки"
-}
-</div>
-</div>
-`;
-container.appendChild(el);
-}
-$("monthPnl").textContent =
-(monthPnl>=0?"+$":"-$")+
-Math.abs(monthPnl).toFixed(2);
-$("monthPnl").className =
-"big "+
-(
-monthPnl>0
-?
-"green"
-:
-monthPnl<0
-?
-"red"
-:
-"gray"
-);
-$("winningDays").textContent=
-winning;
-$("losingDays").textContent=
-losing;
-$("bestDay").textContent=
-best===-Infinity
-?
-"—"
-:
-"+$"+best.toFixed(2);
-}
-/* ================================
-   AI COACH
-================================ */
-function coach(){
-const closed =
-trades.filter(
-t=>t.status==="Closed"
-);
-if(!closed.length){
-$("coachMain").innerHTML=
-`
-<div class="coach-advice">
-👋 <b>AI Coach е готов.</b>
-<br><br>
-Добави първата си затворена сделка и ще следя:
-<b>риск • P&L • Win Rate • Profit Factor • overtrading • дисциплина • последователност</b>
-</div>
-`;
-$("coachGrid").innerHTML="";
-$("coachAdvice").innerHTML="";
-return;
-}
-const pnls =
-closed.map(getPnl);
-const total =
-pnls.reduce(
-(a,b)=>a+b,
-0
-);
-const wins =
-pnls.filter(x=>x>0);
-const losses =
-pnls.filter(x=>x<0);
-const winRate =
-wins.length/
-closed.length*
-100;
-const avgWin =
-wins.length
-?
-wins.reduce((a,b)=>a+b,0)/
-wins.length
-:
-0;
-const avgLoss =
-losses.length
-?
-Math.abs(
-losses.reduce((a,b)=>a+b,0)
-)/
-losses.length
-:
-0;
-const grossWin =
-wins.reduce((a,b)=>a+b,0);
-const grossLoss =
-Math.abs(
-losses.reduce((a,b)=>a+b,0)
-);
-const pf =
-grossLoss
-?
-grossWin/grossLoss
-:
-0;
-const risks =
-closed
-.filter(t=>t.risk!==null)
-.map(t=>Number(t.risk));
-const avgRisk =
-risks.length
-?
-risks.reduce((a,b)=>a+b,0)/
-risks.length
-:
-0;
-const avgR =
-avgRisk
-?
-total/
-avgRisk/
-closed.length
-:
-0;
-/* daily trades */
-const todayTrades =
-closed.filter(
-t=>dateOnly(t)===todayString()
-);
-const today =
-todayPnl();
-/* consecutive losses */
-let consecutiveLosses=0;
-for(
-let i=closed.length-1;
-i>=0;
-i--
-){
-if(
-getPnl(closed[i])<0
-){
-consecutiveLosses++;
-}else{
-break;
-}
-}
-/* consecutive wins */
-let consecutiveWins=0;
-for(
-let i=closed.length-1;
-i>=0;
-i--
-){
-if(
-getPnl(closed[i])>0
-){
-consecutiveWins++;
-}else{
-break;
-}
-}
-/* MAIN */
-let headline;
-if(today>0){
-headline=
-"🟢 <b>Днес си на плюс.</b> "+
-"Ако вече си изпълнил дневната си цел, най-ценната сделка може да бъде да не правиш повече сделки.";
-}
-else if(today<0){
-headline=
-"🔴 <b>Днес си на минус.</b> "+
-"Не увеличавай риска, за да връщаш загубата. Следвай предварително определения си план.";
-}
-else{
-headline=
-"⚪ <b>Днес няма реализиран резултат.</b> "+
-"Липсата на сделка е по-добра от лоша сделка без setup.";
-}
-$("coachMain").innerHTML=
-`
-<div class="coach-advice">
-${headline}
-</div>
-`;
-/* COACH GRID */
-$("coachGrid").innerHTML=`
-<div class="coach-card">
-<div class="coach-card-title">
-Средна печалба
-</div>
-<div class="coach-card-value green">
-+$${avgWin.toFixed(2)}
-</div>
-</div>
-<div class="coach-card">
-<div class="coach-card-title">
-Средна загуба
-</div>
-<div class="coach-card-value red">
--$${avgLoss.toFixed(2)}
-</div>
-</div>
-<div class="coach-card">
-<div class="coach-card-title">
-Среден риск
-</div>
-<div class="coach-card-value">
-$${avgRisk.toFixed(2)}
-</div>
-</div>
-<div class="coach-card">
-<div class="coach-card-title">
-Последни печеливши
-</div>
-<div class="coach-card-value green">
-${consecutiveWins}
-</div>
-</div>
-<div class="coach-card">
-<div class="coach-card-title">
-Последни губещи
-</div>
-<div class="coach-card-value red">
-${consecutiveLosses}
-</div>
-</div>
-<div class="coach-card">
-<div class="coach-card-title">
-Среден R
-</div>
-<div class="coach-card-value">
-${avgR.toFixed(2)}R
-</div>
-</div>
-`;
-/* ADVICE */
-let advice=[];
-/* risk */
-if(avgRisk>25){
-advice.push(
-"🔴 <b>Risk Alert:</b> Средният ти риск е над $25. Това е сигнал да намалиш позицията или да бъдеш по-стриктен със SL."
-);
-}
-else if(avgRisk>0){
-advice.push(
-"🟢 <b>Risk:</b> Средният риск е около $"+
-avgRisk.toFixed(2)+". Следиш риска преди сделката — това е правилният подход."
-);
-}
-/* overtrading */
-if(todayTrades.length>=3){
-advice.push(
-"🔴 <b>Overtrading Alert:</b> Имаш "+
-todayTrades.length+
-" сделки днес. Провери дали всяка е имала реален setup."
-);
-}
-else if(todayTrades.length===2){
-advice.push(
-"🟡 <b>Discipline:</b> Вече имаш 2 сделки днес. Преди трета сделка трябва да има изключително ясен setup."
-);
-}
-else if(todayTrades.length===1){
-advice.push(
-"🟢 <b>Discipline:</b> Само една сделка днес. Това помага да избегнеш overtrading."
-);
-}
-/* win rate */
-if(
-closed.length>=5 &&
-winRate>=60
-){
-advice.push(
-"📈 <b>Win Rate:</b> "+
-winRate.toFixed(1)+
-"%. Имаш положителен резултат по този показател."
-);
-}
-else if(
-closed.length>=5 &&
-winRate<40
-){
-advice.push(
-"🟡 <b>Win Rate:</b> "+
-winRate.toFixed(1)+
-"%. Прегледай последните сделки и потърси повтаряща се грешка."
-);
-}
-/* PF */
-if(pf>1){
-advice.push(
-"🟢 <b>Profit Factor:</b> "+
-pf.toFixed(2)+
-". Общата печалба е по-голяма от общата загуба."
-);
-}
-else if(
-closed.length>=5
-){
-advice.push(
-"🔴 <b>Profit Factor:</b> "+
-pf.toFixed(2)+
-". Засега губещите сделки тежат повече от печелившите."
-);
-}
-/* losing streak */
-if(consecutiveLosses>=3){
-advice.push(
-"🔴 <b>Loss Streak:</b> "+
-consecutiveLosses+
-" поредни загуби. Това е момент за пауза, а не за увеличаване на риска."
-);
-}
-/* winning streak */
-if(consecutiveWins>=3){
-advice.push(
-"🟡 <b>Winning Streak:</b> "+
-consecutiveWins+
-" поредни печеливши сделки. Не увеличавай риска само защото последните сделки са били успешни."
-);
-}
-/* R:R */
-if(avgWin>0 && avgLoss>0){
-const rr=
-avgWin/avgLoss;
-if(rr>=2){
-advice.push(
-"🟢 <b>Reward/Risk:</b> Средната печалба е "+
-rr.toFixed(2)+
-" пъти средната загуба."
-);
-}
-else{
-advice.push(
-"🟡 <b>Reward/Risk:</b> Средната печалба е "+
-rr.toFixed(2)+
-" пъти средната загуба. Следи дали твоите setups дават достатъчно място за печалба."
-);
-}
-}
-/* total */
-if(total>0){
-advice.push(
-"💰 <b>Общ резултат:</b> +$"+
-total.toFixed(2)+
-". Основната задача е да запазиш процеса и контрола на риска."
-);
-}
-else if(total<0){
-advice.push(
-"📉 <b>Общ резултат:</b> -$"+
-Math.abs(total).toFixed(2)+
-". Не преследвай загубата с по-големи позиции."
-);
-}
-$("coachAdvice").innerHTML=
-advice
-.map(
-x=>`
-<div class="advice-line">
-${x}
-</div>
-`
-)
-.join("");
-}
-/* ================================
-   TRADE HISTORY
-================================ */
-function renderTrades(){
-const container =
-$("trades");
-if(!trades.length){
-container.innerHTML=
-`
-<div class="empty-message">
-Няма сделки.<br><br>
-Добави първата си сделка.
-</div>
-`;
-return;
-}
-container.innerHTML=
-trades
-.map(t=>{
-const pnl =
-getPnl(t);
-return `
-<div class="trade">
-<div>
-<b>${t.symbol}</b>
-<br>
-<span class="${
-t.side==="BUY"
-?
-"buy"
-:
-"sell"
-}">
-${t.side}
-</span>
-<span class="pill">
-${t.status}
-</span>
-</div>
-<div>
-<span class="small">
-Entry
-</span>
-<br>
-${t.entry}
-</div>
-<div>
-<span class="small">
-Exit
-</span>
-<br>
-${t.exit ?? "—"}
-</div>
-<div>
-<span class="small">
-Lot
-</span>
-<br>
-${t.lot}
-</div>
-<div>
-<span class="small">
-P&L
-</span>
-<br>
-<b class="${
-pnl>=0
-?
-"green"
-:
-"red"
-}">
-${
-t.status==="Open"
-?
-"—"
-:
-(pnl>=0?"+$":"-$")+
-Math.abs(pnl).toFixed(2)
-}
-</b>
-</div>
-<div>
-<button
-onclick="editTrade(${t.id})">
-Edit
-</button>
-<button
-class="danger"
-onclick="deleteTrade(${t.id})">
-×
-</button>
-</div>
-</div>
-`;
-})
-.join("");
-}
-/* ================================
-   EDIT
-================================ */
-function editTrade(id){
-const t =
-trades.find(
-x=>x.id===id
-);
-if(!t)return;
-$("symbol").value=t.symbol;
-$("side").value=t.side;
-$("status").value=t.status;
-$("entry").value=t.entry;
-$("exit").value=
-t.exit ?? "";
-$("lot").value=t.lot;
-$("sl").value=
-t.sl ?? "";
-$("tp").value=
-t.tp ?? "";
-$("risk").value=
-t.risk ?? "";
-$("date").value=t.date;
-$("notes").value=
-t.notes || "";
-trades=
-trades.filter(
-x=>x.id!==id
-);
-showNew();
-}
-/* ================================
-   DELETE
-================================ */
+
+
+/* DELETE */
+
 function deleteTrade(id){
-trades=
-trades.filter(
-t=>t.id!==id
-);
-save();
+
+    return new Promise((resolve,reject)=>{
+
+        const tx =
+            db.transaction(STORE,"readwrite");
+
+        tx.objectStore(STORE).delete(id);
+
+        tx.oncomplete = () =>
+            resolve();
+
+        tx.onerror = () =>
+            reject(tx.error);
+
+    });
+
 }
-function clearAll(){
-if(
-confirm(
-"Сигурен ли си, че искаш да изтриеш всички сделки?"
-)
-){
-trades=[];
-save();
+
+
+/* =========================================================
+   DATE HELPERS
+========================================================= */
+
+function localDate(){
+
+    const d = new Date();
+
+    const y = d.getFullYear();
+
+    const m =
+        String(d.getMonth()+1)
+        .padStart(2,"0");
+
+    const day =
+        String(d.getDate())
+        .padStart(2,"0");
+
+    return `${y}-${m}-${day}`;
+
 }
-}
-/* ================================
+
+
+/* =========================================================
    RENDER
-================================ */
+========================================================= */
+
 function render(){
-const closed =
-trades.filter(
-t=>t.status==="Closed"
-);
-const total =
-closed.reduce(
-(sum,t)=>sum+getPnl(t),
-0
-);
-const today =
-todayPnl();
-const wins =
-closed.filter(
-t=>getPnl(t)>0
-).length;
-const grossWin =
-closed
-.filter(t=>getPnl(t)>0)
-.reduce(
-(sum,t)=>sum+getPnl(t),
-0
-);
-const grossLoss =
-Math.abs(
-closed
-.filter(t=>getPnl(t)<0)
-.reduce(
-(sum,t)=>sum+getPnl(t),
-0
-)
-);
-$("totalPnl").textContent=
-(total>=0?"+$":"-$")+
-Math.abs(total).toFixed(2);
-$("totalPnl").className=
-"stat-value "+
-(
-total>0
-?
-"green"
-:
-total<0
-?
-"red"
-:
-"gray"
-);
-$("todayPnl").textContent=
-(today>=0?"+$":"-$")+
-Math.abs(today).toFixed(2);
-$("todayPnl").className=
-"stat-value "+
-(
-today>0
-?
-"green"
-:
-today<0
-?
-"red"
-:
-"gray"
-);
-$("winRate").textContent=
-(
-closed.length
-?
-wins/closed.length*100
-:
-0
-)
-.toFixed(1)+"%";
-$("profitFactor").textContent=
-(
-grossLoss
-?
-grossWin/grossLoss
-:
-0
-)
-.toFixed(2);
-renderCalendar();
-renderTrades();
-coach();
+
+    renderCalendar();
+    renderSummary();
+    renderTrades();
+
 }
-render();
+
+
+/* CALENDAR */
+
+function renderCalendar(){
+
+    const calendar =
+        document.getElementById("calendar");
+
+    calendar.innerHTML = "";
+
+    const year =
+        currentMonth.getFullYear();
+
+    const month =
+        currentMonth.getMonth();
+
+    const firstDay =
+        new Date(year,month,1);
+
+    let start =
+        firstDay.getDay();
+
+    /*
+       JS:
+       Sunday = 0
+       Convert to:
+       Monday = 0
+    */
+
+    start =
+        start === 0
+        ? 6
+        : start - 1;
+
+    const days =
+        new Date(year,month+1,0).getDate();
+
+    const monthlyTrades =
+        trades.filter(t=>{
+
+            const d =
+                new Date(t.date);
+
+            return d.getFullYear() === year &&
+                   d.getMonth() === month;
+
+        });
+
+    const daily = {};
+
+    monthlyTrades.forEach(t=>{
+
+        if(!daily[t.date]){
+            daily[t.date] = 0;
+        }
+
+        daily[t.date] += Number(t.pnl) || 0;
+
+    });
+
+    const values =
+        Object.values(daily)
+        .map(Math.abs);
+
+    const max =
+        Math.max(...values,1);
+
+
+    for(let i=0;i<start;i++){
+
+        const empty =
+            document.createElement("div");
+
+        empty.className = "day empty";
+
+        calendar.appendChild(empty);
+
+    }
+
+
+    for(let day=1;day<=days;day++){
+
+        const key =
+            `${year}-${String(month+1).padStart(2,"0")}-${String(day).padStart(2,"0")}`;
+
+        const pnl =
+            daily[key] || 0;
+
+        const box =
+            document.createElement("div");
+
+        box.className = "day trading-day";
+
+        if(pnl > 0){
+
+            box.classList.add("win");
+
+            const intensity =
+                0.15 + (Math.abs(pnl)/max)*0.55;
+
+            box.style.setProperty(
+                "--intensity",
+                Math.min(intensity,.75)
+            );
+
+        }
+
+        if(pnl < 0){
+
+            box.classList.add("loss");
+
+            const intensity =
+                0.15 + (Math.abs(pnl)/max)*0.55;
+
+            box.style.setProperty(
+                "--intensity",
+                Math.min(intensity,.75)
+            );
+
+        }
+
+        if(key === localDate()){
+            box.classList.add("today");
+        }
+
+        const number =
+            document.createElement("div");
+
+        number.className = "day-number";
+        number.textContent = day;
+
+        box.appendChild(number);
+
+
+        if(pnl !== 0){
+
+            const pnlEl =
+                document.createElement("div");
+
+            pnlEl.className = "day-pnl";
+
+            pnlEl.textContent =
+                `${pnl > 0 ? "+" : ""}$${pnl.toFixed(2)}`;
+
+            box.appendChild(pnlEl);
+
+        }
+
+        box.onclick = () => {
+
+            openModal(key);
+
+        };
+
+        calendar.appendChild(box);
+
+    }
+
+
+    document.getElementById("calendarMonth")
+        .textContent =
+        new Intl.DateTimeFormat(
+            "bg-BG",
+            {
+                month:"long",
+                year:"numeric"
+            }
+        ).format(currentMonth);
+
+}
+
+
+/* SUMMARY */
+
+function renderSummary(){
+
+    const year =
+        currentMonth.getFullYear();
+
+    const month =
+        currentMonth.getMonth();
+
+    const monthly =
+        trades.filter(t=>{
+
+            const d =
+                new Date(t.date);
+
+            return d.getFullYear() === year &&
+                   d.getMonth() === month;
+
+        });
+
+    const pnl =
+        monthly.reduce(
+            (sum,t)=>sum+(Number(t.pnl)||0),
+            0
+        );
+
+    const days = {};
+
+    monthly.forEach(t=>{
+
+        days[t.date] =
+            (days[t.date]||0)
+            +(Number(t.pnl)||0);
+
+    });
+
+    const winDays =
+        Object.values(days)
+        .filter(v=>v>0).length;
+
+    const lossDays =
+        Object.values(days)
+        .filter(v=>v<0).length;
+
+    document.getElementById("summaryMonth")
+        .textContent =
+        new Intl.DateTimeFormat(
+            "bg-BG",
+            {
+                month:"long",
+                year:"numeric"
+            }
+        ).format(currentMonth);
+
+    const pnlEl =
+        document.getElementById("monthPnl");
+
+    pnlEl.textContent =
+        `${pnl >= 0 ? "+" : ""}$${pnl.toFixed(2)}`;
+
+    pnlEl.className =
+        "month-pnl " +
+        (
+            pnl > 0
+            ? "positive"
+            : pnl < 0
+            ? "negative"
+            : "neutral"
+        );
+
+    document.getElementById("winDays")
+        .textContent = winDays;
+
+    document.getElementById("lossDays")
+        .textContent = lossDays;
+
+    document.getElementById("tradeCount")
+        .textContent = monthly.length;
+
+}
+
+
+/* TRADE LIST */
+
+function renderTrades(){
+
+    const list =
+        document.getElementById("tradeList");
+
+    list.innerHTML = "";
+
+    const sorted =
+        [...trades]
+        .sort((a,b)=>
+            new Date(b.created)-new Date(a.created)
+        )
+        .slice(0,10);
+
+    if(!sorted.length){
+
+        list.innerHTML =
+            `<div class="empty-trades">
+                Все още няма добавени сделки.
+            </div>`;
+
+        return;
+
+    }
+
+
+    sorted.forEach(t=>{
+
+        const row =
+            document.createElement("div");
+
+        row.className = "trade";
+
+        const pnl =
+            Number(t.pnl)||0;
+
+        row.innerHTML = `
+
+            <div class="trade-info">
+
+                <div class="trade-date">
+                    ${formatDate(t.date)}
+                </div>
+
+                <div class="trade-main">
+                    XAUUSD
+                    ${t.lot ? " · "+t.lot+" lot" : ""}
+                    ${t.entry ? " · "+t.entry : ""}
+                    ${t.exit ? " → "+t.exit : ""}
+                </div>
+
+                ${
+                    t.notes
+                    ? `<div class="trade-note">${escapeHTML(t.notes)}</div>`
+                    : ""
+                }
+
+            </div>
+
+            <div>
+
+                <span class="trade-pnl ${
+                    pnl>=0 ? "positive" : "negative"
+                }">
+
+                    ${pnl>=0 ? "+" : ""}$${pnl.toFixed(2)}
+
+                </span>
+
+                <button
+                    class="delete-btn"
+                    onclick="removeTrade('${t.id}')">
+                    ×
+                </button>
+
+            </div>
+        `;
+
+        list.appendChild(row);
+
+    });
+
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+function openModal(date){
+
+    document.getElementById("tradeDate").value =
+        date || localDate();
+
+    document.getElementById("entry").value = "";
+    document.getElementById("exit").value = "";
+    document.getElementById("lot").value = "";
+    document.getElementById("pnl").value = "";
+    document.getElementById("notes").value = "";
+
+    document.getElementById("overlay")
+        .classList.add("show");
+
+}
+
+
+function closeModal(){
+
+    document.getElementById("overlay")
+        .classList.remove("show");
+
+}
+
+
+/* SAVE FORM */
+
+document.getElementById("tradeForm")
+.addEventListener("submit",async function(e){
+
+    e.preventDefault();
+
+    const trade = {
+
+        id:
+            Date.now().toString() +
+            Math.random().toString(16).slice(2),
+
+        date:
+            document.getElementById("tradeDate").value,
+
+        entry:
+            document.getElementById("entry").value,
+
+        exit:
+            document.getElementById("exit").value,
+
+        lot:
+            document.getElementById("lot").value,
+
+        pnl:
+            Number(
+                document.getElementById("pnl").value
+            ) || 0,
+
+        notes:
+            document.getElementById("notes").value,
+
+        created:
+            new Date().toISOString()
+
+    };
+
+
+    try{
+
+        showSaving();
+
+        await saveTrade(trade);
+
+        trades.push(trade);
+
+        closeModal();
+
+        render();
+
+        showSaved();
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "Не успях да запазя сделката. Опитай отново."
+        );
+
+    }
+
+});
+
+
+/* DELETE */
+
+async function removeTrade(id){
+
+    const ok =
+        confirm("Да изтрия ли тази сделка?");
+
+    if(!ok) return;
+
+    await deleteTrade(id);
+
+    trades =
+        trades.filter(t=>t.id!==id);
+
+    render();
+
+}
+
+
+/* MONTH */
+
+function changeMonth(amount){
+
+    currentMonth =
+        new Date(
+            currentMonth.getFullYear(),
+            currentMonth.getMonth()+amount,
+            1
+        );
+
+    render();
+
+}
+
+
+/* =========================================================
+   BACKUP
+========================================================= */
+
+function exportData(){
+
+    const blob =
+        new Blob(
+            [JSON.stringify(trades,null,2)],
+            {type:"application/json"}
+        );
+
+    const url =
+        URL.createObjectURL(blob);
+
+    const a =
+        document.createElement("a");
+
+    a.href = url;
+
+    a.download =
+        `gold-journal-backup-${localDate()}.json`;
+
+    a.click();
+
+    URL.revokeObjectURL(url);
+
+}
+
+
+document.getElementById("importFile")
+.addEventListener("change",async function(e){
+
+    const file = e.target.files[0];
+
+    if(!file) return;
+
+    try{
+
+        const text =
+            await file.text();
+
+        const imported =
+            JSON.parse(text);
+
+        if(!Array.isArray(imported)){
+
+            alert("Невалиден backup файл.");
+            return;
+
+        }
+
+        for(const trade of imported){
+
+            await saveTrade(trade);
+
+        }
+
+        trades =
+            await getTrades();
+
+        render();
+
+        alert("Backup-ът е възстановен.");
+
+    }catch(error){
+
+        alert("Грешка при възстановяване.");
+
+    }
+
+});
+
+
+/* =========================================================
+   UTILITIES
+========================================================= */
+
+function formatDate(date){
+
+    const d =
+        new Date(date+"T00:00:00");
+
+    return new Intl.DateTimeFormat(
+        "bg-BG",
+        {
+            day:"2-digit",
+            month:"2-digit",
+            year:"numeric"
+        }
+    ).format(d);
+
+}
+
+
+function escapeHTML(text){
+
+    return String(text)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+
+}
+
+
+function showSaving(){
+
+    document.getElementById("saveStatus")
+        .textContent = "● Запазване...";
+
+}
+
+
+function showSaved(){
+
+    document.getElementById("saveStatus")
+        .textContent = "● Запазено";
+
+}
+
+
+/* =========================================================
+   START APP
+========================================================= */
+
+async function startApp(){
+
+    try{
+
+        await openDB();
+
+        trades =
+            await getTrades();
+
+        render();
+
+        /*
+          Request persistent storage where supported.
+          This helps prevent the browser from automatically
+          removing stored data.
+        */
+
+        if(
+            navigator.storage &&
+            navigator.storage.persist
+        ){
+
+            try{
+                await navigator.storage.persist();
+            }catch(e){}
+
+        }
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "Грешка при стартиране на базата данни."
+        );
+
+    }
+
+}
+
+
+/* SERVICE WORKER */
+
+if("serviceWorker" in navigator){
+
+    window.addEventListener(
+        "load",
+        ()=>{
+            navigator.serviceWorker
+                .register("./sw.js")
+                .catch(err =>
+                    console.log(
+                        "Service Worker error:",
+                        err
+                    )
+                );
+        }
+    );
+
+}
+
+
+startApp();
+
 </script>
+
 </body>
 </html>
